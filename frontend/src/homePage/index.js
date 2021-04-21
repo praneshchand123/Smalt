@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./style.module.css";
-import { Button, TextField, makeStyles, Avatar, AvatarGroup } from '@material-ui/core';
+import { Button, TextField, makeStyles } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
@@ -32,7 +32,8 @@ const useStyles = makeStyles({
 
 });
 
-export default function JoinPlaylistPage() {
+export default function HomePage() {
+    console.log("homepage");
     const classes = useStyles();
 
     const handleLoginClick = () => {
@@ -43,47 +44,40 @@ export default function JoinPlaylistPage() {
         console.log('Fetch Device')
     }
 
-    const handleAvatar = () => {
-        <Avatar />
-    }
-
-    
-
     return (
         <div className={styles.rootContainer}>
             <div>
-                <Button className={{root: classes.primaryButton}}
-                onClick={handleLoginClick}>Login</Button>
+                <Button className={{ root: classes.primaryButton }}
+                    onClick={handleLoginClick}>Login
+                </Button>
             </div>
             <div className={styles.rootContainer}>
-                <p className={{root: classes.paragraphy}}>Playlist is empty now, please add songs</p>
-                <TextField 
-                        classes={{ root: classes.textField }}
-                        id="standard-basic" 
-                        variant="outlined" 
-                        size="large" 
-                        label="Search songs code" 
-                        InputProps={{
-                            style: { color: '#fff' },
-                        }}
-                        InputLabelProps={{
-                            style: { color: '#fff' },
-                        }}
-                    />
+                <p className={{ root: classes.paragraphy }}>Playlist is empty now, please add songs</p>
+                <TextField
+                    classes={{ root: classes.textField }}
+                    id="standard-basic"
+                    variant="outlined"
+                    size="large"
+                    label="Search songs code"
+                    InputProps={{
+                        style: { color: '#fff' },
+                    }}
+                    InputLabelProps={{
+                        style: { color: '#fff' },
+                    }}
+                />
             </div>
             <div>
-                <p className={{root: classes.headLine}}>Device</p>
-                <Button className={{root: classes.primaryButton}} 
-                onClick={handleFetch}></Button>
+                <p className={{ root: classes.headLine }}>Device</p>
+                <Button className={{ root: classes.primaryButton }}
+                    onClick={handleFetch}>
+                </Button>
             </div>
 
             <div>
-                <p lassName={{root: classes.headLine}}>Active Friends</p>
-                <AvatarGroup max={4}>
-                    {handleAvatar}
-                </AvatarGroup>
+                <p className={{ root: classes.headLine }}>Active Friends</p>
             </div>
-            
+
         </div>
     );
 }
