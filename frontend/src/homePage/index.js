@@ -5,19 +5,12 @@ import { BottomNavigation } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
-    loginButton: {
+    backButton: {
         background: "#30A0F5",
         borderRadius: 30,
-        padding: "15px 30px",
+        padding: "18px 40px",
         width: "30%",
-        fontSize: 15,
-    },
-    deviceButton: {
-        background: "#30A0F5",
-        borderRadius: 30,
-        padding: "15px 30px",
-        width: "100%",
-        fontSize: 15,
+        fontSize: 18,
     },
     textField: {
         background: "#595959",
@@ -61,7 +54,7 @@ export default function HomePage() {
     return (
         <div className={styles.rootContainer}>
             <div class="subdiv_allinline">
-                <Button classes={{ root: classes.loginButton }}
+                <Button classes={{ root: classes.backButton }}
                     onClick={handleBack}>Back
                 </Button>
                     <Button className={styles.menuButton} 
