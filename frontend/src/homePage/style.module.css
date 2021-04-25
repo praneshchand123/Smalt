@@ -28,3 +28,15 @@
   font-size: large;
   margin-bottom: 20px;
 }
+
+.menuButton{ 
+  float: right; 
+  position:absolute;
+  color: "#30A0F5";
+  width: "30%";
+  size: 15;
+  top:15px; 
+  right: 30px; 
+} 
+
+

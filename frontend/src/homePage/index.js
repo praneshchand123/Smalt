@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./style.module.css";
-import { Button, TextField, makeStyles } from '@material-ui/core';
+import { Button, TextField, makeStyles, MenuItem, Menu } from '@material-ui/core';
 import { BottomNavigation } from '@material-ui/core';
 
 
@@ -25,31 +25,69 @@ const useStyles = makeStyles({
         fontSize: 18,
         color: "white",
     },
+    menuButton: {
+        background: "#30A0F5",
+        borderRadius: 30,
+        width: "30%",
+        padding: "15px 30px",
+        fontSize: 15,
+        
+    },
 });
 
 export default function HomePage() {
 
     const classes = useStyles();
+    
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleLoginClick = () => {
-        console.log('button click');
-    };
+        const handleOpenMenu = (event) => {
+            setAnchorEl(event.currentTarget);
+        };
 
-    const handleFetch = () => {
-        console.log('Fetch Device');
-    };
+        const handleClose = () => {
+            setAnchorEl(null);
+        };
+
+
+        const handleBack = () => {
+            console.log('login');
+        };
+    
+
+    
+
 
     return (
         <div className={styles.rootContainer}>
-            <div>
+            <div class="subdiv_allinline">
                 <Button classes={{ root: classes.loginButton }}
-                    onClick={handleLoginClick}>Login
+                    onClick={handleBack}>Back
                 </Button>
+                    <Button className={styles.menuButton} 
+                    classes={{ root: classes.menuButton }} 
+                    onClick={handleOpenMenu}
+                    aria-controls="menu-list"
+                    aria-haspopup="true"
+                    >
+                    Open Menu
+                    </Button>
+                    <Menu
+                    id="menu-list"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                    >
+                    <MenuItem onClick={handleClose}>Login</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    </Menu>
             </div>
+
             <div className={styles.bodyPartContainer}> 
                 <form>
-                    <p className={styles.paraStyle}>Playlist is empty now, please add songs</p>
-                    <TextField
+                <TextField
                         classes={{ root: classes.textField }}
                         id="standard-basic"
                         variant="outlined"
@@ -62,10 +100,7 @@ export default function HomePage() {
                             style: { color: '#fff' },
                         }}
                     />
-                    <p className={styles.paraStyle}>Device</p>
-                    <Button classes={{ root: classes.deviceButton }}
-                        onClick={handleFetch}>Fetch Device
-                    </Button>
+                    <p className={styles.paraStyle}>Playlist is empty now, please add songs</p>
                 </form>
             </div>
 
