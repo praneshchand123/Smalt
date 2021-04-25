@@ -1,0 +1,42 @@
+.rootContainer {
+    padding: 15px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background: #333333;
+  }
+
+.bodyPartContainer {
+    margin: 0;
+    position: absolute;
+    height: 130px;
+    width: 100%;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+}
+
+.paraStyle {
+  color: white;
+  size: 40px;
+  position: static;
+  font-size: large;
+  margin-bottom: 20px;
+}
+
+.menuButton{ 
+  float: right; 
+  position:absolute;
+  color: "#30A0F5";
+  width: "30%";
+  size: 15;
+  top:15px; 
+  right: 30px; 
+} 
+
+
