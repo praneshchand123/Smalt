@@ -21,9 +21,15 @@ router.post('/', function(req, res, next) {
 ])
 });
 
+// router.post('/auth', async (req, res)  => {
+//   console.log("backend called");
+//   console.log(req.body.uri);
+//   res.json(spotify.createAuthRequest(req.body));
+//   console.log(res.data);
+// });
+
 router.get('/auth', async (req, res)  => {
-  res.json([{url: spotify.createAuthRequest(req.uri)}]);
-  console.log(res);
+  res.json(spotify.createAuthRequest(req.query.uri));
 });
 
 module.exports = router;

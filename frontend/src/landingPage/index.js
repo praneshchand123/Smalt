@@ -32,22 +32,23 @@ export default function LandingPage() {
 
 
 
-    const handleLogin = () => {
-        const uri='http://localhost:3000/users/auth';
+    async function handleLogin() {
+        const payload={
+            params: {
+                uri: 'http://localhost:3001/'
+            }
+        };
         // Make a request for a user with a given ID
-    axios.get('http://localhost:3001/users/auth/',uri)
-    .then(function (response) {
+        const response = await axios.get('http://localhost:3001/users/auth', payload);
         // handle success
-        window.location.href =response.body;
-        console.log(response.body);
-    })
-}
-
-    function handleRedirect(){
-        let code = getCode();
-        
-        window.history.pushState("", "", redirect_uri); // remove param from url
+        window.location.href = response.data;
     }
+
+    // function handleRedirect(){
+    //     let code = getCode();
+        
+    //     window.history.pushState("", "", redirect_uri); // remove param from url
+    // }
 
 
     return (
