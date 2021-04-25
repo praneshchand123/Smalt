@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-import createAuthRequest from 'spotify.js';
+
+const spotify = require('./spotify.js')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -20,8 +21,9 @@ router.post('/', function(req, res, next) {
 ])
 });
 
-router.get('/auth', function(req, res, next) {
-  res.json([{url: createAuthRequest()}]);
+router.get('/auth', async (req, res)  => {
+  res.json([{url: spotify.createAuthRequest(req.uri)}]);
+  console.log(res);
 });
 
 module.exports = router;
