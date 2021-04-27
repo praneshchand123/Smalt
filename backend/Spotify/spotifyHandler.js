@@ -6,7 +6,8 @@ var router = express.Router();
 const clientId = '0a6cf31ec5bf4808831e58a7bb937cc7';
 const clientSecret = '25b3362597014da293b32f9d99bca194';
 
-
+var access_token = null;
+var refresh_token = null;
 
 //spotify api endpoints
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
@@ -33,5 +34,8 @@ exports.createAuthRequest = function (redirectUri){
     url += "&scope=user-read-private user-read-email user-modify-playback-state user-read-playback-position user-library-read streaming user-read-playback-state user-read-recently-played playlist-read-private";
     return url;
 }
+
+
+
 
 
