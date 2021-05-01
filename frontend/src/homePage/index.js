@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from "./style.module.css";
-import { Button, TextField, makeStyles, MenuItem, Menu } from '@material-ui/core';
-import { BottomNavigation } from '@material-ui/core';
+import { Button, TextField, makeStyles, MenuItem, Menu, Table, TableBody, TableCell, TableHead, TableRow, } from '@material-ui/core';
+import Popper from '@material-ui/core/Popper';
+import { TableContainer } from '@material-ui/core';
 
 
 const useStyles = makeStyles({
@@ -22,9 +23,12 @@ const useStyles = makeStyles({
         background: "#30A0F5",
         borderRadius: 30,
         width: "30%",
-        padding: "15px 30px",
-        fontSize: 15,
+        padding: "18px 40px",
+        fontSize: 18,
         
+    },
+    table: {
+        minWidth: "300px",
     },
 });
 
@@ -33,6 +37,8 @@ export default function HomePage() {
     const classes = useStyles();
     
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const [tableAnchorEl, setTableAnchorEl] = React.useState(null);
 
         const handleOpenMenu = (event) => {
             setAnchorEl(event.currentTarget);
@@ -46,6 +52,12 @@ export default function HomePage() {
         const handleBack = () => {
             console.log('login');
         };
+
+        const handleOpenTable = (event) => {
+            setTableAnchorEl(tableAnchorEl ? null : event.currentTarget);
+        };
+
+        const openTable = Boolean(tableAnchorEl);
     
 
     
@@ -80,7 +92,11 @@ export default function HomePage() {
 
             <div className={styles.bodyPartContainer}> 
                 <form>
+                <p className={styles.paraStyle}>Playlist is empty now, please add songs</p>
                 <TextField
+                        onClick={handleOpenTable}
+                        aria-controls="table-list"
+                        aria-haspopup="false"
                         classes={{ root: classes.textField }}
                         id="standard-basic"
                         variant="outlined"
@@ -93,7 +109,24 @@ export default function HomePage() {
                             style: { color: '#fff' },
                         }}
                     />
-                    <p className={styles.paraStyle}>Playlist is empty now, please add songs</p>
+                    <Popper id="table-list" open={openTable} anchorEl={tableAnchorEl}>
+                        <Table className={{root: classes.table}}>
+                            <TableHead>
+                            <TableRow>
+                                <TableCell align="centre">Songs code</TableCell>
+                                <TableCell align="centre">Songs name</TableCell>
+                                
+                            </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                <TableRow>
+                                <TableCell align="centre">code here</TableCell>
+                                <TableCell align="centre">name here</TableCell>
+                            
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </Popper>
                 </form>
             </div>
 
