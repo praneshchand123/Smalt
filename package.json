@@ -2,7 +2,9 @@
   "name": "smalt",
   "version": "1.0.0",
   "description": "",
-  "dependencies": {},
+  "dependencies": {
+    "btoa": "^1.2.1"
+  },
   "devDependencies": {
     "concurrently": "^6.0.2"
   },

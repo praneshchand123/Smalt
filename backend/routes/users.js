@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+const axios = require('axios');
 const spotify = require('../Spotify/spotifyHandler.js')
 
 /* GET users listing. */
@@ -29,7 +29,15 @@ router.post('/', function(req, res, next) {
 // });
 
 router.get('/auth', async (req, res)  => {
+  //payload = spotify.createAuthRequest(req.query.uri)
   res.json(spotify.createAuthRequest(req.query.uri));
+});
+
+router.get('/auth/code',async (req, res)  => {
+  console.log('idk');
+  console.log(req.query.authCode);
+  thefinalsolution = spotify.fetchAccessToken(req.query.authCode)
+  console.log(thefinalsolution)
 });
 
 module.exports = router;
