@@ -165,14 +165,14 @@ export default function HomePage() {
                 </Menu>
                 */}
                 <Table classes={{ root: classes.table }}>
-                        <TableBody className={styles.tableStyle}>
-                            <TableRow style={{backgroundColor:'#333333'}} className={styles.tableStyle}>
-                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Song</TableCell>
-                                <TableCell style={{borderBottom:"none"}} align="centre" rowSpan={2}><img src="song.png"/></TableCell>
+                        <TableBody >
+                            <TableRow style={{backgroundColor:'#333333'}} >
+                                <TableCell style={{borderBottom:"none", color:"white"}} align="centre">Song</TableCell>
+                                <TableCell style={{borderBottom:"none", color:"white"}} align="centre" rowSpan={2}><img src="song.png"/></TableCell>
 
                             </TableRow>
                             <TableRow style={{backgroundColor:'#333333'}}>
-                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Artist</TableCell>
+                                <TableCell style={{borderBottom:"none", color:"white"}} align="centre">Artist</TableCell>
                                 
 
                             </TableRow>
@@ -180,16 +180,16 @@ export default function HomePage() {
                     </Table>
 
                     <Table classes={{ root: classes.table }}>
-                    <TableBody className={styles.tableStyle}>
+                    <TableBody >
                             <TableRow style={{backgroundColor:'#333333'}}>
-                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Song</TableCell>
-                                <TableCell style={{borderBottom:"none"}} align="centre" rowSpan={2}><img src="song.png"/></TableCell>
+                                <TableCell style={{borderBottom:"none", color:"white"}} align="centre">Song</TableCell>
+                                <TableCell style={{borderBottom:"none", color:"white"}} align="centre" rowSpan={2}><img src="song.png"/></TableCell>
 
                             </TableRow>
                         
                         
                             <TableRow style={{backgroundColor:'#333333'}}>
-                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Artist</TableCell>
+                                <TableCell style={{borderBottom:"none", color:"white"}} align="centre">Artist</TableCell>
                                 
 
                             </TableRow>
