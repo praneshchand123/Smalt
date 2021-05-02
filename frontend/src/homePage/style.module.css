@@ -12,10 +12,10 @@
 .bodyPartContainer {
     margin: 0;
     position: absolute;
-    height: 130px;
+    height: 200px;
     width: 100%;
     top: 40%;
-    left: 50%;
+    left: 60%;
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
@@ -39,3 +39,6 @@
   right: 0px; 
 }
 
+.table{
+  color: white;
+}
