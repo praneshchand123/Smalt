@@ -1,7 +1,3 @@
-var express = require('express');
-var router = express.Router();
-
-
 //our spotify app keys
 const clientId = '0a6cf31ec5bf4808831e58a7bb937cc7';
 const clientSecret = '25b3362597014da293b32f9d99bca194';
@@ -21,9 +17,10 @@ const PLAYER = "https://api.spotify.com/v1/me/player";
 const TRACKS = "https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks";
 const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
 const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
+const SEARCH = "https://api.spotify.com/v1/search";
 
 //redirectUri Must be approved in spotify
-exports.createAuthRequest = function (redirectUri){
+exports.createAuthRequest = function (redirectUri) {
     let url = AUTHORIZE;
     url += "?client_id=" + clientId;
     url += "&response_type=code";
@@ -31,6 +28,13 @@ exports.createAuthRequest = function (redirectUri){
     url += "&redirect_uri=" + encodeURI(redirectUri);
     url += "&show_dialog=true";
     url += "&scope=user-read-private user-read-email user-modify-playback-state user-read-playback-position user-library-read streaming user-read-playback-state user-read-recently-played playlist-read-private";
+    return url;
+}
+
+exports.createSearchQuery = function (searchTerm) {
+    let url = SEARCH;
+    url += "?q=" + searchTerm;
+    url += "&type=track&market=NZ&limit=4&offset=0";
     return url;
 }
 

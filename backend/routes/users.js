@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const spotify = require('./spotify.js')
+const spotify = require('../utils/spotify.js')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
