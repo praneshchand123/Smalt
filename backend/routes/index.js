@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.use('/users', users);
 
+//router.use('/specialmagicalurl', auth)
+
 module.exports = router;
