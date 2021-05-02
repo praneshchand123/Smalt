@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios";
 import styles from "./style.module.css";
 import { Button, TextField, makeStyles, MenuItem, Menu, Table, TableBody, TableCell, TableHead, TableRow, } from '@material-ui/core';
 import Popper from '@material-ui/core/Popper';
@@ -48,9 +49,9 @@ export default function HomePage() {
 
     const classes = useStyles();
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [searchTerm, setSearchTerm] = React.useState("");
 
-    //const [anchorEl2, setAnchorEl2] = React.useState(null);
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
     const [playList, setPlayList] = React.useState(null);
 
@@ -69,41 +70,16 @@ export default function HomePage() {
         console.log('login');
     };
 
-    /*const handleOpenTable = (event) => {
-        setTableAnchorEl(tableAnchorEl ? null : event.currentTarget);
-        setPlayList(true)
-    };
-    */
+    const handleSearch = async (searchTerm) => {
+        setSearchTerm(searchTerm);
 
+        if(searchTerm !== "") {
+            console.log(searchTerm);
+        }
+        //const response = await axios.get('http://localhost:3001/users/auth', { params: { searchTerm: val } });
+    };
 
     const openTable = Boolean(tableAnchorEl);
-
-    /*const handleOpenSongsMenu = (event) => {
-        setAnchorEl2(event.currentTarget);
-    };
-
-    const handleSongsClose = () => {
-        setAnchorEl2(null);
-    };
-    
-    const addSong = (playList) => {
-        setPlayList((prev) => {
-          return [playList, ...prev];
-        });
-      };
-    */
-
-    /*
-    const handlePlayListTabel = () => {
-        if(table){
-            return <p className={styles.paraStyle}>Playlist is empty now, please add songs</p>
-        }else{
-            return <Table></Table>
-        }
-    }
-    */
-
-
 
     return (
         <div className={styles.rootContainer}>
@@ -134,7 +110,6 @@ export default function HomePage() {
 
             <div className={styles.bodyPartContainer}>
                 <form>
-
                     <TextField
                         aria-controls="songs-list"
                         aria-haspopup="false"
@@ -142,7 +117,8 @@ export default function HomePage() {
                         id="standard-basic"
                         variant="outlined"
                         size="large"
-                        label="Search songs code"
+                        label="Search songs"
+                        onChange={val => handleSearch(val.target.value)}
                         InputProps={{
                             style: { color: '#fff' },
                         }}
@@ -151,19 +127,6 @@ export default function HomePage() {
                         }}
                     />
                     <p className={styles.paraStyle}>Playlist {playList ? 'is below' : 'is empty, please add songs'}</p>
-                    {/*
-                <Menu
-                    id="songs-list"
-                    anchorEl={anchorEl2}
-                    keepMounted
-                    open={Boolean(anchorEl2)}
-                    onClose={handleSongsClose}
-                    >
-                    <MenuItem onClick={() => setPlayList('Song 1') }>Song 1</MenuItem>
-                    <MenuItem onClick={() => setPlayList('Song 2')}>Song 2</MenuItem>
-                    <MenuItem onClick={() => setPlayList('Song 3')}>Song 3</MenuItem>
-                </Menu>
-                */}
                     <Table classes={{ root: classes.table }}>
                         <TableBody className={styles.tableStyle}>
                             <TableRow style={{ backgroundColor: '#333333' }} className={styles.tableStyle}>
