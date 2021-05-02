@@ -11,7 +11,7 @@ router.get('/search', async (req, res)  => {
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization": "Bearer BQDAJuHHXV69jk0XjJcv2-lHCrYHZgmQPfzFwqcOelM-rcgLfn2pjztqgCDJ66i1v64L1oTVX_qL9x9mz9yf09SSFizRRcUYrfH5KTshcVtODfhYR2ctTXyntEF5zYrBUGV1fQ2me7-x",
+        "Authorization": "Bearer BQBRXyk26kKWynCvrKoE8BzjVJK1O4jo2eloPJ4aOVyIJHDBuo_COQfo-kxpj2kmZohfrFpFZAj1P3uiY38iAt4m83Sx-s-ReRNnI6Su-bH4fxzAwBk9vDnw_UHpbqIRUF0h2_88rkTm",
     }
     
     //
@@ -20,7 +20,7 @@ router.get('/search', async (req, res)  => {
         })
         .then(response => {
             var formattedResponse = formatter.formatSearchResponse(response.data.tracks.items);
-            res.json(response.data);
+            res.json(formattedResponse);
         })
         .catch(error => {
             console.log(error);
