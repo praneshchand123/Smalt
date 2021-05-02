@@ -167,7 +167,7 @@ export default function HomePage() {
                     <Table classes={{ root: classes.table }}>
                         <TableBody className={styles.tableStyle}>
                             <TableRow style={{ backgroundColor: '#333333' }} className={styles.tableStyle}>
-                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Song</TableCell>
+                                <TableCell style={{ borderBottom: "none", color: "white", fontSize: "18pt" }} align="centre">Want you</TableCell>
                                 <TableCell style={{ borderBottom: "none", color: "white" }} align="centre" rowSpan={2}>
                                     <img
                                         src="https://i.scdn.co/image/ab67616d00004851c34e9b33adb0030233a6efef"
@@ -176,7 +176,7 @@ export default function HomePage() {
                                 </TableCell>
                             </TableRow>
                             <TableRow style={{ backgroundColor: '#333333' }}>
-                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Artist</TableCell>
+                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Kanine</TableCell>
 
 
                             </TableRow>
@@ -186,7 +186,7 @@ export default function HomePage() {
                     <Table classes={{ root: classes.table }}>
                         <TableBody >
                             <TableRow style={{ backgroundColor: '#333333' }}>
-                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Song</TableCell>
+                                <TableCell style={{ borderBottom: "none", color: "white", fontSize: "18pt" }} align="centre">Song</TableCell>
                                 <TableCell style={{ borderBottom: "none", color: "white" }} align="centre" rowSpan={2}>
                                     <img
                                         src="https://i.scdn.co/image/ab67616d00001e024719d135efa3d7567c0d7faa"

@@ -19,6 +19,7 @@
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 .paraStyle {
@@ -26,6 +27,8 @@
   size: 40px;
   position: static;
   font-size: large;
+  left: 50%;
+  transform: translate(0%, 0%);
   margin-bottom: 20px;
 }
 
@@ -42,4 +45,5 @@
 .image {
   height: 64px;
   width: 64px;
+  float: right;
 }
