@@ -45,16 +45,12 @@ exports.fetchAccessToken = async function (code) {
     body += "&client_id=" + clientId;
     body += "&client_secret=" + clientSecret;
     
-    var responseToken = callAuthorizationApi(body);
-    console.log("RESPONSEHERE")
-    responseToken.then(function(result) {
-        console.log(result.data) // "Some User token"
-        output = {accessToken:result.data.access_token,
-            refreshToken:result.data.refresh_token};
-        console.log("output: ");
-        console.log(result.data);
-        return result.data;
-     });
+    var responseToken = await callAuthorizationApi(body);
+        output = {
+            accessToken:responseToken.data.access_token,
+            refreshToken:responseToken.data.refresh_token,
+        };
+    return output;
 }
 
 
