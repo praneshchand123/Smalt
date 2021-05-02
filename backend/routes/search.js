@@ -1,9 +1,9 @@
 var express = require('express');
 const axios = require('axios');
-var router = express.Router();
-
-const spotify = require('../utils/spotify.js');
+const spotify = require('../Spotify/spotifyHandler.js');
 const formatter = require('../utils/formatter.js');
+
+var router = express.Router();
 
 /* GET search Spotify API with search  term */
 router.get('/search', async (req, res)  => {
@@ -26,6 +26,5 @@ router.get('/search', async (req, res)  => {
             console.log(error);
         });
 });
-
 
 module.exports = router;

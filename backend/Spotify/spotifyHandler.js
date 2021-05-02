@@ -37,6 +37,13 @@ exports.createAuthRequest = function (redirectUri) {
     return url;
 }
 
+exports.createSearchQuery = function (searchTerm) {
+    let url = SEARCH;
+    url += "?q=" + searchTerm;
+    url += "&type=track&market=NZ&limit=4&offset=0";
+    return url;
+}
+
 
 exports.fetchAccessToken = async function (code) {
     let body = "grant_type=authorization_code";
