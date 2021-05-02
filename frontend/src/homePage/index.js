@@ -43,13 +43,14 @@ const useStyles = makeStyles({
     },
 });
 
+
 export default function HomePage() {
 
     const classes = useStyles();
     
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const [anchorEl2, setAnchorEl2] = React.useState(null);
+    //const [anchorEl2, setAnchorEl2] = React.useState(null);
 
     const [playList, setPlayList] = React.useState(null);
 
@@ -163,40 +164,34 @@ export default function HomePage() {
                     <MenuItem onClick={() => setPlayList('Song 3')}>Song 3</MenuItem>
                 </Menu>
                 */}
-
-
-                    <Table classes={{ root: classes.table }}>
-                        <TableHead>
-                            <TableRow style={{backgroundColor:'gray'}}>
-                                <TableCell align="centre">Song</TableCell>
-                                <TableCell align="centre">Img</TableCell>
-                                
-                            </TableRow>
-                        </TableHead>
+                <TableContainer>
+                    <Table classes={{ root: classes.table }} aria-label="spanning table">
                         <TableBody>
                             <TableRow style={{backgroundColor:'gray'}}>
-                                <TableCell align="centre">Artist</TableCell>
-                                <TableCell align="centre"><img /></TableCell>
-                            
+                                <TableCell style={{borderBottom:"none"}} align="centre">Song</TableCell>
+                                <TableCell style={{borderBottom:"none"}} rowSpan={2}><img /></TableCell>
+                            </TableRow>
+                            <TableRow style={{backgroundColor:'gray'}}>
+                                <TableCell style={{borderBottom:"none"}} align="centre">Artist</TableCell>
+                                
                             </TableRow>
                         </TableBody>
                     </Table>
-                    <Table classes={{ root: classes.table }}>
-                        <TableHead>
-                            <TableRow style={{backgroundColor:'gray'}}>
-                                <TableCell align="centre">Song</TableCell>
-                                <TableCell align="centre">Img</TableCell>
-                                
-                            </TableRow>
-                        </TableHead>
+                        
+                        
+                    <Table classes={{ root: classes.table }} aria-label="spanning table">
                         <TableBody>
                             <TableRow style={{backgroundColor:'gray'}}>
-                                <TableCell align="centre">Artist</TableCell>
-                                <TableCell align="centre"><img /></TableCell>
-                            
+                                <TableCell style={{borderBottom:"none"}} align="centre">Song</TableCell>
+                                <TableCell style={{borderBottom:"none"}} rowSpan={2}><img /></TableCell>
+                            </TableRow>
+                            <TableRow style={{backgroundColor:'gray'}}>
+                                <TableCell style={{borderBottom:"none"}} align="centre">Artist</TableCell>
+                                
                             </TableRow>
                         </TableBody>
                     </Table>
+                    </TableContainer>
                 </form>
             </div>
 
