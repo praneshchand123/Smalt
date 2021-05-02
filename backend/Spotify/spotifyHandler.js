@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const axios = require('axios');
-const btoa = require('btoa')
-
+var bodyParser = require('body-parser')
 //our spotify app keys
 const clientId = '0a6cf31ec5bf4808831e58a7bb937cc7';
 const clientSecret = '25b3362597014da293b32f9d99bca194';
@@ -37,53 +36,28 @@ exports.createAuthRequest = function (redirectUri) {
     url += "&scope=user-read-private user-read-email user-modify-playback-state user-read-playback-position user-library-read streaming user-read-playback-state user-read-recently-played playlist-read-private";
     return url;
 }
-// exports.createAuthRequest = function (redirectUri){
 
-//     const payload = {
-//     params : {client_id : clientId,
-//         response_type : "code",
-//         redirect_uri : redirectUri, 
-//         show_dialog : "true",
-//         scope : "user-read-private \
-//                 user-read-email \
-//                 user-modify-playback-state \
-//                 user-read-playback-position \
-//                 user-library-read \
-//                 streaming \
-//                 user-read-playback-state \
-//                 user-read-recently-played \
-//                 playlist-read-private"}}
-//      axios.get(AUTHORIZE,payload);
-// }
-exports.requestToken = function (redirectUri, authCode) {
-    let url = TOKEN;
-    url += "?client_id=" + clientId;
-    url += "&response_type=code";
-    url += "&code=" + authCode;
-    // url += "&redirect_uri=" + encodeURI('http://localhost:3000');
-    url += "&redirect_uri=" + encodeURI(redirectUri);
-}
 
-exports.fetchAccessToken = function (code) {
+exports.fetchAccessToken = async function (code) {
     let body = "grant_type=authorization_code";
     body += "&code=" + code; 
     body += "&redirect_uri=" + encodeURI('http://localhost:3000/');
     body += "&client_id=" + clientId;
     body += "&client_secret=" + clientSecret;
-    //var body = makeBody(code);
-    callAuthorizationApi(body);
+    
+    var responseToken = callAuthorizationApi(body);
+    console.log("RESPONSEHERE")
+    responseToken.then(function(result) {
+        console.log(result.data) // "Some User token"
+        output = {accessToken:result.data.access_token,
+            refreshToken:result.data.refresh_token};
+        console.log("output: ");
+        console.log(result.data);
+        return result.data;
+     });
 }
 
-function makeBody(authCode) {
-    var body = {
-        grant_type: " authorization_code",
-        code: authCode,
-        redirect_Uri: encodeURI('http://localhost:3000/'),
-        client_id: clientId,
-        client_secret: clientSecret,
-    }
-    return body;
-}
+
 
 exports.refreshAccessToken = function () {
     refresh_token = localStorage.getItem("refresh_token");
@@ -93,53 +67,17 @@ exports.refreshAccessToken = function () {
     callAuthorizationApi(body);
 }
 
-// function callAuthorizationApi(body){
-//     let xhr = new XMLHttpRequest();
-//     xhr.open("POST", TOKEN, true);
-//     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-//     xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa(client_id + ":" + client_secret));
-//     xhr.send(body);
-//     xhr.onload = handleAuthorizationResponse;
-// }
+
 async function callAuthorizationApi(body) {
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
     }
-    console.log(btoa(clientId + ":" + clientSecret));
-    axios.post(TOKEN, body, { headers: headers }).then(res => {
-        console.log(res);
-    })
-        .catch(err => {
-            if (err.response) {
-                console.log(err.response);
-            } else if (err.request) {
-                console.log(err.request);
-            } else {
-                console.log("else");
-            }
-        })
+    res = await axios.post(TOKEN, body, { headers: headers });
+    return res;
+
 }
 
-function handleAuthorizationResponse() {
-    if (this.status == 200) {
-        var data = JSON.parse(this.responseText);
-        console.log(data);
-        var data = JSON.parse(this.responseText);
-        if (data.access_token != undefined) {
-            access_token = data.access_token;
-            localStorage.setItem("access_token", access_token);
-        }
-        if (data.refresh_token != undefined) {
-            refresh_token = data.refresh_token;
-            localStorage.setItem("refresh_token", refresh_token);
-        }
-        onPageLoad();
-    }
-    else {
-        console.log(this.responseText);
-        alert(this.responseText);
-    }
-}
+
 
 
 

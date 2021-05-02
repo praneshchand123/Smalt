@@ -21,12 +21,7 @@ router.post('/', function(req, res, next) {
 ])
 });
 
-// router.post('/auth', async (req, res)  => {
-//   console.log("backend called");
-//   console.log(req.body.uri);
-//   res.json(spotify.createAuthRequest(req.body));
-//   console.log(res.data);
-// });
+
 
 router.get('/auth', async (req, res)  => {
   //payload = spotify.createAuthRequest(req.query.uri)
@@ -34,9 +29,12 @@ router.get('/auth', async (req, res)  => {
 });
 
 router.get('/auth/code',async (req, res)  => {
-  console.log('idk');
-  console.log(req.query.authCode);
   var thefinalsolution = spotify.fetchAccessToken(req.query.authCode);
+  thefinalsolution.then(function(result) {
+    console.log("final solution: ");
+    console.log(result);
+  })
+  console.log("final solution:")
   console.log(thefinalsolution)
 });
 
