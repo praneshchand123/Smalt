@@ -164,34 +164,37 @@ export default function HomePage() {
                     <MenuItem onClick={() => setPlayList('Song 3')}>Song 3</MenuItem>
                 </Menu>
                 */}
-                <TableContainer>
-                    <Table classes={{ root: classes.table }} aria-label="spanning table">
-                        <TableBody>
-                            <TableRow style={{backgroundColor:'gray'}}>
-                                <TableCell style={{borderBottom:"none"}} align="centre">Song</TableCell>
-                                <TableCell style={{borderBottom:"none"}} rowSpan={2}><img /></TableCell>
+                <Table classes={{ root: classes.table }}>
+                        <TableBody className={styles.tableStyle}>
+                            <TableRow style={{backgroundColor:'#333333'}} className={styles.tableStyle}>
+                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Song</TableCell>
+                                <TableCell style={{borderBottom:"none"}} align="centre" rowSpan={2}><img src="song.png"/></TableCell>
+
                             </TableRow>
-                            <TableRow style={{backgroundColor:'gray'}}>
-                                <TableCell style={{borderBottom:"none"}} align="centre">Artist</TableCell>
+                            <TableRow style={{backgroundColor:'#333333'}}>
+                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Artist</TableCell>
                                 
+
                             </TableRow>
                         </TableBody>
                     </Table>
-                        
-                        
-                    <Table classes={{ root: classes.table }} aria-label="spanning table">
-                        <TableBody>
-                            <TableRow style={{backgroundColor:'gray'}}>
-                                <TableCell style={{borderBottom:"none"}} align="centre">Song</TableCell>
-                                <TableCell style={{borderBottom:"none"}} rowSpan={2}><img /></TableCell>
+
+                    <Table classes={{ root: classes.table }}>
+                    <TableBody className={styles.tableStyle}>
+                            <TableRow style={{backgroundColor:'#333333'}}>
+                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Song</TableCell>
+                                <TableCell style={{borderBottom:"none"}} align="centre" rowSpan={2}><img src="song.png"/></TableCell>
+
                             </TableRow>
-                            <TableRow style={{backgroundColor:'gray'}}>
-                                <TableCell style={{borderBottom:"none"}} align="centre">Artist</TableCell>
+                        
+                        
+                            <TableRow style={{backgroundColor:'#333333'}}>
+                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Artist</TableCell>
                                 
+
                             </TableRow>
                         </TableBody>
                     </Table>
-                    </TableContainer>
                 </form>
             </div>
 
