@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 
 //This schema represents all the users, playlists and host in a room database
 const roomSchema = new Schema({
+    //randomised code for users to enter
+    code: {type: String, unique: true, required: true},
+
     //user subdocument
     user: {
         userName: { type: String, unique: true, required: true}
