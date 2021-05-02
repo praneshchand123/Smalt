@@ -168,7 +168,12 @@ export default function HomePage() {
                         <TableBody className={styles.tableStyle}>
                             <TableRow style={{backgroundColor:'#333333'}} className={styles.tableStyle}>
                                 <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Song</TableCell>
-                                <TableCell style={{borderBottom:"none"}} align="centre" rowSpan={2}><img src="song.png"/></TableCell>
+                                <TableCell style={{borderBottom:"none"}} align="centre" rowSpan={2}>
+                                    <img 
+                                        src="https://i.scdn.co/image/ab67616d00004851c34e9b33adb0030233a6efef"
+                                        className={styles.image}
+                                    />
+                                </TableCell>
 
                             </TableRow>
                             <TableRow style={{backgroundColor:'#333333'}}>
@@ -183,7 +188,12 @@ export default function HomePage() {
                     <TableBody className={styles.tableStyle}>
                             <TableRow style={{backgroundColor:'#333333'}}>
                                 <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Song</TableCell>
-                                <TableCell style={{borderBottom:"none"}} align="centre" rowSpan={2}><img src="song.png"/></TableCell>
+                                <TableCell style={{borderBottom:"none"}} align="centre" rowSpan={2}>
+                                    <img 
+                                        src="https://i.scdn.co/image/ab67616d00001e024719d135efa3d7567c0d7faa"
+                                        className={styles.image}
+                                    />
+                                </TableCell>
 
                             </TableRow>
                         

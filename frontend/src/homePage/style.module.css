@@ -29,7 +29,7 @@
   margin-bottom: 20px;
 }
 
-.menuButton{ 
+.menuButton { 
   float: right; 
   position:absolute;
   color: "#30A0F5";
@@ -39,7 +39,12 @@
   right: 0px; 
 }
 
-.tableStyle{
+.tableStyle {
   color: white;
   font-size: large;
+}
+
+.image {
+  height: 64px;
+  width: 64px;
 }
