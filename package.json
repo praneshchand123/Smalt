@@ -1,0 +1,26 @@
+{
+  "name": "smalt",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "btoa": "^1.2.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.2"
+  },
+  "scripts": {
+    "client": "cd frontend && npm start",
+    "server": "cd backend && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbur801/Smalt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jbur801/Smalt/issues"
+  },
+  "homepage": "https://github.com/jbur801/Smalt#readme"
+}
