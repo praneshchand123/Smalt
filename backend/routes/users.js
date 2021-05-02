@@ -36,7 +36,7 @@ router.get('/auth', async (req, res)  => {
 router.get('/auth/code',async (req, res)  => {
   console.log('idk');
   console.log(req.query.authCode);
-  thefinalsolution = spotify.fetchAccessToken(req.query.authCode)
+  var thefinalsolution = spotify.fetchAccessToken(req.query.authCode);
   console.log(thefinalsolution)
 });
 

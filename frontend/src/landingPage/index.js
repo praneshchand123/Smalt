@@ -3,8 +3,9 @@ import styles from "./style.module.css";
 import { Button, Container, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { green, purple } from '@material-ui/core/colors';
-const axios = require('axios');
 import React, { useState, useEffect } from 'react';
+
+const axios = require('axios');
 
 const useStyles = makeStyles({
     primaryButton: {
@@ -64,12 +65,12 @@ export default function LandingPage() {
 
 
 
-    function handleRedirect(){
-        let code = getCode();
-        console.out(code);
-        window.history.pushState("", "", redirect_uri); // remove param from url
+    // function handleRedirect(){
+    //     let code = getCode();
+    //     console.out(code);
+    //     window.history.pushState("", "", redirect_uri); // remove param from url
 
-    }
+    // }
     function getCode(){
         let code = null;
         const queryString = window.location.search;
@@ -82,7 +83,7 @@ export default function LandingPage() {
 
 
     return (
-        <div className={styles.rootContainer} onLoad={handleRedirect}>
+        <div className={styles.rootContainer} >
             <div className={styles.buttonContainer}>
                 <Button
                     classes={{ root: classes.primaryButton }}
