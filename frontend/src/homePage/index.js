@@ -75,8 +75,8 @@ export default function HomePage() {
 
         if(searchTerm !== "") {
             console.log(searchTerm);
+            const response = await axios.get('http://localhost:3001/search/search', { params: { searchTerm: searchTerm } });
         }
-        const response = await axios.get('http://localhost:3001/users/auth', { params: { searchTerm: searchTerm } });
     };
 
     const openTable = Boolean(tableAnchorEl);
