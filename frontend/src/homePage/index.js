@@ -68,15 +68,16 @@ export default function HomePage() {
             console.log('login');
         };
 
-        const handleOpenTable = (event) => {
+        /*const handleOpenTable = (event) => {
             setTableAnchorEl(tableAnchorEl ? null : event.currentTarget);
             setPlayList(true)
         };
+        */
 
         
         const openTable = Boolean(tableAnchorEl);
 
-        const handleOpenSongsMenu = (event) => {
+        /*const handleOpenSongsMenu = (event) => {
             setAnchorEl2(event.currentTarget);
         };
 
@@ -89,6 +90,7 @@ export default function HomePage() {
               return [playList, ...prev];
             });
           };
+        */
 
         /*
         const handlePlayListTabel = () => {
@@ -131,9 +133,8 @@ export default function HomePage() {
 
             <div className={styles.bodyPartContainer}> 
                 <form>
-                <p className={styles.paraStyle}>Playlist {playList ? 'is below' : 'is empty, please add songs' }</p>
+                
                 <TextField
-                        onClick={handleOpenSongsMenu}
                         aria-controls="songs-list"
                         aria-haspopup="false"
                         classes={{ root: classes.textField }}
@@ -148,6 +149,8 @@ export default function HomePage() {
                             style: { color: '#fff' },
                         }}
                     />
+                <p className={styles.paraStyle}>Playlist {playList ? 'is below' : 'is empty, please add songs' }</p>
+                {/*
                 <Menu
                     id="songs-list"
                     anchorEl={anchorEl2}
@@ -159,33 +162,41 @@ export default function HomePage() {
                     <MenuItem onClick={() => setPlayList('Song 2')}>Song 2</MenuItem>
                     <MenuItem onClick={() => setPlayList('Song 3')}>Song 3</MenuItem>
                 </Menu>
+                */}
 
 
-                <Button classes={{ root: classes.showPlayListButton }} 
-                    onClick={handleOpenTable}
-                    aria-describedby="playlist-table"
-                    >Show playlist
-                </Button>
-                <Popper id="playlist-table" open={openTable} anchorEl={tableAnchorEl}>
                     <Table classes={{ root: classes.table }}>
                         <TableHead>
                             <TableRow style={{backgroundColor:'gray'}}>
-                                <TableCell align="centre">Songs code</TableCell>
-                                <TableCell align="centre">Songs name</TableCell>
+                                <TableCell align="centre">Song</TableCell>
+                                <TableCell align="centre">Img</TableCell>
                                 
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             <TableRow style={{backgroundColor:'gray'}}>
-                                <TableCell align="centre">Code</TableCell>
-                                <TableCell align="centre">
-                                    {playList}
-                                </TableCell>
+                                <TableCell align="centre">Artist</TableCell>
+                                <TableCell align="centre"><img /></TableCell>
                             
                             </TableRow>
                         </TableBody>
                     </Table>
-                </Popper>
+                    <Table classes={{ root: classes.table }}>
+                        <TableHead>
+                            <TableRow style={{backgroundColor:'gray'}}>
+                                <TableCell align="centre">Song</TableCell>
+                                <TableCell align="centre">Img</TableCell>
+                                
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow style={{backgroundColor:'gray'}}>
+                                <TableCell align="centre">Artist</TableCell>
+                                <TableCell align="centre"><img /></TableCell>
+                            
+                            </TableRow>
+                        </TableBody>
+                    </Table>
                 </form>
             </div>
 
