@@ -27,7 +27,7 @@ const useStyles = makeStyles({
         width: "30%",
         padding: "18px 40px",
         fontSize: 18,
-        
+
     },
     table: {
         width: 300,
@@ -47,7 +47,7 @@ const useStyles = makeStyles({
 export default function HomePage() {
 
     const classes = useStyles();
-    
+
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     //const [anchorEl2, setAnchorEl2] = React.useState(null);
@@ -56,53 +56,53 @@ export default function HomePage() {
 
     const [tableAnchorEl, setTableAnchorEl] = React.useState(null);
 
-        const handleOpenMenu = (event) => {
-            setAnchorEl(event.currentTarget);
-        };
+    const handleOpenMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
-        const handleClose = () => {
-            setAnchorEl(null);
-        };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
 
-        const handleBack = () => {
-            console.log('login');
-        };
+    const handleBack = () => {
+        console.log('login');
+    };
 
-        /*const handleOpenTable = (event) => {
-            setTableAnchorEl(tableAnchorEl ? null : event.currentTarget);
-            setPlayList(true)
-        };
-        */
+    /*const handleOpenTable = (event) => {
+        setTableAnchorEl(tableAnchorEl ? null : event.currentTarget);
+        setPlayList(true)
+    };
+    */
 
-        
-        const openTable = Boolean(tableAnchorEl);
 
-        /*const handleOpenSongsMenu = (event) => {
-            setAnchorEl2(event.currentTarget);
-        };
+    const openTable = Boolean(tableAnchorEl);
 
-        const handleSongsClose = () => {
-            setAnchorEl2(null);
-        };
-        
-        const addSong = (playList) => {
-            setPlayList((prev) => {
-              return [playList, ...prev];
-            });
-          };
-        */
+    /*const handleOpenSongsMenu = (event) => {
+        setAnchorEl2(event.currentTarget);
+    };
 
-        /*
-        const handlePlayListTabel = () => {
-            if(table){
-                return <p className={styles.paraStyle}>Playlist is empty now, please add songs</p>
-            }else{
-                return <Table></Table>
-            }
-        }
-        */
+    const handleSongsClose = () => {
+        setAnchorEl2(null);
+    };
     
+    const addSong = (playList) => {
+        setPlayList((prev) => {
+          return [playList, ...prev];
+        });
+      };
+    */
+
+    /*
+    const handlePlayListTabel = () => {
+        if(table){
+            return <p className={styles.paraStyle}>Playlist is empty now, please add songs</p>
+        }else{
+            return <Table></Table>
+        }
+    }
+    */
+
 
 
     return (
@@ -111,12 +111,12 @@ export default function HomePage() {
                 <Button classes={{ root: classes.backButton }}
                     onClick={handleBack}>Back
                 </Button>
-                <Button className={styles.menuButton} 
-                    classes={{ root: classes.menuButton }} 
+                <Button className={styles.menuButton}
+                    classes={{ root: classes.menuButton }}
                     onClick={handleOpenMenu}
                     aria-controls="menu-list"
                     aria-haspopup="true"
-                    >
+                >
                     Open Menu
                 </Button>
                 <Menu
@@ -125,17 +125,17 @@ export default function HomePage() {
                     keepMounted
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
-                    >
+                >
                     <MenuItem onClick={handleClose}>Login</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </div>
 
-            <div className={styles.bodyPartContainer}> 
+            <div className={styles.bodyPartContainer}>
                 <form>
-                
-                <TextField
+
+                    <TextField
                         aria-controls="songs-list"
                         aria-haspopup="false"
                         classes={{ root: classes.textField }}
@@ -150,8 +150,8 @@ export default function HomePage() {
                             style: { color: '#fff' },
                         }}
                     />
-                <p className={styles.paraStyle}>Playlist {playList ? 'is below' : 'is empty, please add songs' }</p>
-                {/*
+                    <p className={styles.paraStyle}>Playlist {playList ? 'is below' : 'is empty, please add songs'}</p>
+                    {/*
                 <Menu
                     id="songs-list"
                     anchorEl={anchorEl2}
@@ -164,50 +164,44 @@ export default function HomePage() {
                     <MenuItem onClick={() => setPlayList('Song 3')}>Song 3</MenuItem>
                 </Menu>
                 */}
-                <Table classes={{ root: classes.table }}>
+                    <Table classes={{ root: classes.table }}>
                         <TableBody className={styles.tableStyle}>
-                            <TableRow style={{backgroundColor:'#333333'}} className={styles.tableStyle}>
-                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Song</TableCell>
-                                <TableCell style={{borderBottom:"none"}} align="centre" rowSpan={2}>
-                                    <img 
+                            <TableRow style={{ backgroundColor: '#333333' }} className={styles.tableStyle}>
+                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Song</TableCell>
+                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre" rowSpan={2}>
+                                    <img
                                         src="https://i.scdn.co/image/ab67616d00004851c34e9b33adb0030233a6efef"
                                         className={styles.image}
                                     />
                                 </TableCell>
-
                             </TableRow>
-                            <TableRow style={{backgroundColor:'#333333'}}>
-                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Artist</TableCell>
-                                
+                            <TableRow style={{ backgroundColor: '#333333' }}>
+                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Artist</TableCell>
+
 
                             </TableRow>
                         </TableBody>
                     </Table>
 
                     <Table classes={{ root: classes.table }}>
-                    <TableBody className={styles.tableStyle}>
-                            <TableRow style={{backgroundColor:'#333333'}}>
-                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Song</TableCell>
-                                <TableCell style={{borderBottom:"none"}} align="centre" rowSpan={2}>
-                                    <img 
+                        <TableBody >
+                            <TableRow style={{ backgroundColor: '#333333' }}>
+                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Song</TableCell>
+                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre" rowSpan={2}>
+                                    <img
                                         src="https://i.scdn.co/image/ab67616d00001e024719d135efa3d7567c0d7faa"
                                         className={styles.image}
                                     />
                                 </TableCell>
-
                             </TableRow>
-                        
-                        
-                            <TableRow style={{backgroundColor:'#333333'}}>
-                                <TableCell className={styles.tableStyle} style={{borderBottom:"none"}} align="centre">Artist</TableCell>
-                                
-
+                            <TableRow style={{ backgroundColor: '#333333' }}>
+                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Artist</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
                 </form>
             </div>
 
-        </div>
+        </div >
     );
 }
