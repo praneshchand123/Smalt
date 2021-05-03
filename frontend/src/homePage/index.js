@@ -1,6 +1,7 @@
 import React from 'react';
+import axios from "axios";
 import styles from "./style.module.css";
-import { Button, TextField, makeStyles, MenuItem, Menu, Table, TableBody, TableCell, TableHead, TableRow, } from '@material-ui/core';
+import { Button, TextField, makeStyles, MenuItem, Menu, MenuList, Table, TableBody, TableCell, TableHead, TableRow, Grow, ClickAwayListener } from '@material-ui/core';
 import Popper from '@material-ui/core/Popper';
 import { TableContainer } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
@@ -41,6 +42,11 @@ const useStyles = makeStyles({
         padding: "18px 40px",
         fontSize: 18,
     },
+    menuItem: {
+        justifyContent: "right",
+        zIndex: 20,
+        position: "relative",
+    },
 });
 
 
@@ -48,13 +54,20 @@ export default function HomePage() {
 
     const classes = useStyles();
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [searchTerm, setSearchTerm] = React.useState("");
 
-    //const [anchorEl2, setAnchorEl2] = React.useState(null);
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
     const [playList, setPlayList] = React.useState(null);
 
-    const [tableAnchorEl, setTableAnchorEl] = React.useState(null);
+    const [suggestions, setSuggestions] = React.useState();
+
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef(null);
+
+    const focusTextField = () => {
+        document.getElementById("searchField").focus();
+    }
 
     const handleOpenMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -64,49 +77,42 @@ export default function HomePage() {
         setAnchorEl(null);
     };
 
+    const handleCloseSuggestions = (event) => {
+        if (anchorRef.current && anchorRef.current.contains(event.target)) {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    function handleListKeyDown(event) {
+        if (event.key === 'Tab') {
+            event.preventDefault();
+            setOpen(false);
+        }
+    }
 
     const handleBack = () => {
         console.log('login');
     };
 
-    /*const handleOpenTable = (event) => {
-        setTableAnchorEl(tableAnchorEl ? null : event.currentTarget);
-        setPlayList(true)
-    };
-    */
+    const handleSearch = async (searchTerm) => {
+        setSearchTerm(searchTerm);
 
-
-    const openTable = Boolean(tableAnchorEl);
-
-    /*const handleOpenSongsMenu = (event) => {
-        setAnchorEl2(event.currentTarget);
-    };
-
-    const handleSongsClose = () => {
-        setAnchorEl2(null);
-    };
-    
-    const addSong = (playList) => {
-        setPlayList((prev) => {
-          return [playList, ...prev];
-        });
-      };
-    */
-
-    /*
-    const handlePlayListTabel = () => {
-        if(table){
-            return <p className={styles.paraStyle}>Playlist is empty now, please add songs</p>
-        }else{
-            return <Table></Table>
+        if (searchTerm !== "") {
+            console.log(searchTerm);
+            const response = await axios.get('http://localhost:3001/search/search', { params: { searchTerm: searchTerm } });
+            console.log(response.data);
+            setSuggestions(response.data);
+            setOpen(true);
+            focusTextField();
+        } else {
+            setOpen(false);
         }
-    }
-    */
-
-
+    };
 
     return (
-        <div className={styles.rootContainer}>
+        <div className={styles.rootContainer} >
             <div class="subdiv_allinline">
                 <Button classes={{ root: classes.backButton }}
                     onClick={handleBack}>Back
@@ -134,15 +140,16 @@ export default function HomePage() {
 
             <div className={styles.bodyPartContainer}>
                 <form>
-
                     <TextField
                         aria-controls="songs-list"
                         aria-haspopup="false"
                         classes={{ root: classes.textField }}
-                        id="standard-basic"
+                        id="searchField"
                         variant="outlined"
                         size="large"
-                        label="Search songs code"
+                        label="Search songs"
+                        autoFocus={true}
+                        onChange={val => handleSearch(val.target.value)}
                         InputProps={{
                             style: { color: '#fff' },
                         }}
@@ -150,20 +157,31 @@ export default function HomePage() {
                             style: { color: '#fff' },
                         }}
                     />
-                    <p className={styles.paraStyle}>Playlist {playList ? 'is below' : 'is empty, please add songs'}</p>
-                    {/*
-                <Menu
-                    id="songs-list"
-                    anchorEl={anchorEl2}
-                    keepMounted
-                    open={Boolean(anchorEl2)}
-                    onClose={handleSongsClose}
-                    >
-                    <MenuItem onClick={() => setPlayList('Song 1') }>Song 1</MenuItem>
-                    <MenuItem onClick={() => setPlayList('Song 2')}>Song 2</MenuItem>
-                    <MenuItem onClick={() => setPlayList('Song 3')}>Song 3</MenuItem>
-                </Menu>
-                */}
+                    <Popper open={open} anchorEl={document.getElementById("searchField")} role={undefined} transition disablePortal>
+                        {({ TransitionProps, placement }) => (
+                            <Grow
+                                {...TransitionProps}
+                                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                            >
+                                <Paper>
+                                    <ClickAwayListener onClickAway={handleCloseSuggestions}>
+                                        <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown} >
+                                            {suggestions.map((track, index) => {
+                                                return <MenuItem onClick={handleCloseSuggestions} key={index} classes={{root: classes.menuItem}}>
+                                                    <label style={{float: "left"}}>{track.name}</label>
+                                                    <img
+                                                        src={track.imageURL}
+                                                        className={styles.image}
+                                                        alt=""
+                                                    />
+                                                </MenuItem>;
+                                            })}
+                                        </MenuList>
+                                    </ClickAwayListener>
+                                </Paper>
+                            </Grow>
+                        )}
+                    </Popper>
                     <Table classes={{ root: classes.table }}>
                         <TableBody className={styles.tableStyle}>
                             <TableRow style={{ backgroundColor: '#333333' }} className={styles.tableStyle}>

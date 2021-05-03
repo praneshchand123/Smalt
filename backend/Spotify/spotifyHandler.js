@@ -22,6 +22,7 @@ const PLAYER = "https://api.spotify.com/v1/me/player";
 const TRACKS = "https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks";
 const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
 const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
+const SEARCH = "https://api.spotify.com/v1/search";
 
 
 //this function creates string which redirects user to spotify with login prompt and returns it. User is redirected by frontend.

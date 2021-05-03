@@ -11,20 +11,16 @@ router.get('/search', async (req, res)  => {
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization": "Bearer BQBRXyk26kKWynCvrKoE8BzjVJK1O4jo2eloPJ4aOVyIJHDBuo_COQfo-kxpj2kmZohfrFpFZAj1P3uiY38iAt4m83Sx-s-ReRNnI6Su-bH4fxzAwBk9vDnw_UHpbqIRUF0h2_88rkTm",
+        "Authorization": "Bearer BQALmpZtTPX_mRXXOPdu0lPqT7oSmF94vdUJqeciVbT8dvxcSnC-SANdtSXHSUcFkxZQ-rhF3tA12gIqU_uKnxSw4afW2ed8o5eKWGbPUfIueVTGjpiymdVnFmi4r58PxJ0QnNfubG4e",
     }
-    
-    //
-    axios.get(spotify.createSearchQuery(req.body.searchTerm), {
+    console.log(req.query.searchTerm);
+    var response = await axios.get(spotify.createSearchQuery(req.query.searchTerm), {
             headers: headers
-        })
-        .then(response => {
-            var formattedResponse = formatter.formatSearchResponse(response.data.tracks.items);
-            res.json(formattedResponse);
-        })
-        .catch(error => {
-            console.log(error);
         });
+
+        var formattedResponse = formatter.formatSearchResponse(response.data.tracks.items);
+        console.log(formattedResponse);
+        res.json(formattedResponse);
 });
 
 module.exports = router;

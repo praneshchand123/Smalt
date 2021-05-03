@@ -1,11 +1,9 @@
-
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import styles from "./style.module.css";
 import { Button, Container, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { green, purple } from '@material-ui/core/colors';
-import React, { useState, useEffect } from 'react';
-
-const axios = require('axios');
 
 const useStyles = makeStyles({
     primaryButton: {
