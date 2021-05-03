@@ -4,6 +4,7 @@ import './App.css';
 import LandingPage from './landingPage';
 import JoinPlaylistPage from './joinPlaylistPage';
 import HomePage from './homePage';
+import HostPage from './hostPage';
 
 function App() {
   return (
@@ -12,6 +13,10 @@ function App() {
 
         <Route path="/joinplaylist">
           <JoinPlaylistPage />
+        </Route>
+
+        <Route path="/host">
+          <HostPage />
         </Route>
 
         <Route path="/home">

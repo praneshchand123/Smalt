@@ -48,7 +48,7 @@ exports.createSearchQuery = function (searchTerm) {
 exports.fetchAccessToken = async function (code) {
     let body = "grant_type=authorization_code";
     body += "&code=" + code; 
-    body += "&redirect_uri=" + encodeURI('http://localhost:3000/');
+    body += "&redirect_uri=" + encodeURI('http://localhost:3000/host');
     body += "&client_id=" + clientId;
     body += "&client_secret=" + clientSecret;
     
