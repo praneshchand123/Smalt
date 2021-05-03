@@ -7,4 +7,4 @@ const connectionString = "mongodb+srv://smaltadmin:AG47gX6WIP3YUaB2@cluster0.knz
 
 connect.connectToDatabase();
 console.log('connection success');
-query.createNewRoom("abcdefg", "jak chen");
+query.createNewRoom("abcdefgh", "jack chen");

@@ -14,10 +14,10 @@ exports.createNewRoom = async function (token, hostName) {
 
   const room = new Room({
     host: {
-      username: hostName,
+      userName: hostName,
       oAuthToken: token
     },
-    code: "hehexdlmao"
+    code: "hehexdlmao2"
   });
 
   addData(room);
@@ -27,7 +27,7 @@ exports.createNewRoom = async function (token, hostName) {
 async function addData(room) {
 
   // More efficient than adding one-by-one.
-  const result = await Room.insertOne(room);
+  const result = await room.save();
   console.log(`Added ${result.length} object(s) to the database.`);
   for (let todo of result) {
       console.log(` - ${todo.host} (${todo.code})`);

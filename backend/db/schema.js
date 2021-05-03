@@ -16,8 +16,6 @@ const roomSchema = new Schema({
   user: {
     userName: {
       type: String,
-      unique: true,
-      required: true
     }
   },
 
