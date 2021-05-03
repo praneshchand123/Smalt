@@ -20,7 +20,11 @@ const useStyles = makeStyles({
         width: "300px",
         fontSize: 18,
         color: "white",
-        margin: "10px"
+        margin: "10px",
+        size: "large",
+    },
+    textInput: {
+        color: '#fff',
     },
     menuButton: {
         background: "#30A0F5",
@@ -28,7 +32,6 @@ const useStyles = makeStyles({
         width: "30%",
         padding: "18px 40px",
         fontSize: 18,
-
     },
     table: {
         width: 300,
@@ -47,8 +50,21 @@ const useStyles = makeStyles({
         zIndex: 20,
         position: "relative",
     },
+    tableRow: {
+        backgroundColor: '#333333',
+    },
+    tableCell: {
+        borderBottom: "none", 
+        color: "white",
+        align: "centre",
+    },
+    tableCellHead: {
+        borderBottom: "none", 
+        color: "white", 
+        fontSize: "18pt",
+        align: "centre",
+    }
 });
-
 
 export default function HomePage() {
 
@@ -121,23 +137,19 @@ export default function HomePage() {
                     classes={{ root: classes.menuButton }}
                     onClick={handleOpenMenu}
                     aria-controls="menu-list"
-                    aria-haspopup="true"
-                >
-                    Open Menu
+                    aria-haspopup="true">Open Menu
                 </Button>
                 <Menu
                     id="menu-list"
                     anchorEl={anchorEl}
                     keepMounted
                     open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                >
+                    onClose={handleClose}>
                     <MenuItem onClick={handleClose}>Login</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </div>
-
             <div className={styles.bodyPartContainer}>
                 <form>
                     <TextField
@@ -183,43 +195,39 @@ export default function HomePage() {
                         )}
                     </Popper>
                     <Table classes={{ root: classes.table }}>
-                        <TableBody className={styles.tableStyle}>
-                            <TableRow style={{ backgroundColor: '#333333' }} className={styles.tableStyle}>
-                                <TableCell style={{ borderBottom: "none", color: "white", fontSize: "18pt" }} align="centre">Want you</TableCell>
-                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre" rowSpan={2}>
+                        <TableBody>
+                            <TableRow classes={{ root: classes.tableRow }}>
+                                <TableCell classes={{ root: classes.tableCellHead }}>Want you</TableCell>
+                                <TableCell classes={{ root: classes.tableCell }} rowSpan={2}>
                                     <img
                                         src="https://i.scdn.co/image/ab67616d00004851c34e9b33adb0030233a6efef"
                                         className={styles.image}
                                     />
                                 </TableCell>
                             </TableRow>
-                            <TableRow style={{ backgroundColor: '#333333' }}>
-                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Kanine</TableCell>
-
-
+                            <TableRow classes={{ root: classes.tableRow }}>
+                                <TableCell classes={{ root: classes.tableCell }}>Kanine</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
-
                     <Table classes={{ root: classes.table }}>
-                        <TableBody >
-                            <TableRow style={{ backgroundColor: '#333333' }}>
-                                <TableCell style={{ borderBottom: "none", color: "white", fontSize: "18pt" }} align="centre">Song</TableCell>
-                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre" rowSpan={2}>
+                        <TableBody>
+                            <TableRow classes={{ root: classes.tableRow }}>
+                                <TableCell classes={{ root: classes.tableCellHead }}>Song</TableCell>
+                                <TableCell classes={{ root: classes.tableCell }} rowSpan={2}>
                                     <img
                                         src="https://i.scdn.co/image/ab67616d00001e024719d135efa3d7567c0d7faa"
                                         className={styles.image}
                                     />
                                 </TableCell>
                             </TableRow>
-                            <TableRow style={{ backgroundColor: '#333333' }}>
-                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Artist</TableCell>
+                            <TableRow classes={{ root: classes.tableRow }}>
+                                <TableCell classes={{ root: classes.tableCell }}>Artist</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
                 </form>
             </div>
-
         </div >
     );
 }

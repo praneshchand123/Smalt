@@ -17,6 +17,7 @@ const useStyles = makeStyles({
         width: "300px",
         fontSize: 18,
         color: "white",
+        size: "large",
     },
 });
 
@@ -42,8 +43,7 @@ export default function JoinPlaylistPage() {
                     <TextField 
                         classes={{ root: classes.textField }}
                         id="standard-basic" 
-                        variant="outlined" 
-                        size="large" 
+                        variant="outlined"
                         label="Playlist code" 
                         InputProps={{
                             style: { color: '#fff' },
