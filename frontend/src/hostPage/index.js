@@ -23,24 +23,43 @@ const useStyles = makeStyles({
 export default function hostLoginPage() {
     const classes = useStyles();
     const history = useHistory();
+    
+
+    const createRoom = () => {
+        var code = new URLSearchParams(window.location.search).get("code")
+        if(code != null){
+            console.log("code found")
+            const payload={
+                params: {
+                    authCode: code,
+                    userName: "jimmy"
+                }
+            };
+            const response = axios.get('http://localhost:3001/users/auth/code', payload);
+        }
+        console.log(code);
+    
+    }
+
 
        // Similar to componentDidMount and componentDidUpdate:
-  useEffect(() => {
-    // Update the document title using the browser API
-    //console.log(window.location.search);
-    var code = new URLSearchParams(window.location.search).get("code")
-    if(code != null){
-        console.log("code found")
-        const payload={
-            params: {
-                authCode: code
-            }
-        };
-        const response = axios.get('http://localhost:3001/users/auth/code', payload);
-    }
-    console.log(code);
-    
-  });
+//   useEffect(() => {
+//     // Update the document title using the browser API
+//     //console.log(window.location.search);
+//     var code = new URLSearchParams(window.location.search).get("code")
+//     if(code != null){
+//         console.log("code found")
+//         const payload={
+//             params: {
+//                 authCode: code
+//             }
+//         };
+//         const response = axios.get('http://localhost:3001/users/auth/code', payload);
+//     }
+//     console.log(code);
+//   });
+
+
 
     const handleBack = () => {
         console.log('back');
@@ -73,7 +92,7 @@ export default function hostLoginPage() {
                 </form>
                 <Button
                     classes={{ root: classes.primaryButton }}
-                    onClick={handleBack}
+                    onClick={createRoom}
                     style={{ position: 'absolute', bottom: 0, width: 300 }}
                 >
                     Enter
