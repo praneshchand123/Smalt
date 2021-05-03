@@ -1,11 +1,9 @@
-
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import styles from "./style.module.css";
 import { Button, Container, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { green, purple } from '@material-ui/core/colors';
-import React, { useState, useEffect } from 'react';
-
-const axios = require('axios');
 
 const useStyles = makeStyles({
     primaryButton: {
@@ -14,7 +12,11 @@ const useStyles = makeStyles({
         padding: "20px 40px",
         width: "100%",
         fontSize: 18,
+        position: 'absolute', 
+        bottom: 0, 
+        left: 0,
     },
+
 });
 
 
@@ -78,7 +80,6 @@ export default function LandingPage() {
                 </Button>
                 <Button
                     classes={{ root: classes.primaryButton }}
-                    style={{ position: 'absolute', bottom: 0, left: 0 }}
                     onClick={handleJoinPlaylist}
                 >
                     Join a playlist
