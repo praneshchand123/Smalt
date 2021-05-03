@@ -10,6 +10,7 @@ const DEFAULT_CONNECTION_STRING = "mongodb+srv://smaltadmin:AG47gX6WIP3YUaB2@clu
  */
 exports.connectToDatabase =  function (connectionString = DEFAULT_CONNECTION_STRING) {
     return mongoose.connect(connectionString, {
-        useNewUrlParser: true
+        useNewUrlParser: true, 
+        // useUnifiedTopology: true 
     });
 }
