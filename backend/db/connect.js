@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 
-const DEFAULT_CONNECTION_STRING = "mongodb+srv://smaltadmin:AG47gX6WIP3YUaB2@cluster0.knzot.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const DEFAULT_CONNECTION_STRING = "mongodb+srv://smaltadmin:AG47gX6WIP3YUaB2@cluster0.knzot.mongodb.net/roomRegistry?retryWrites=true&w=majority";
 ;
 
 /**

@@ -15,7 +15,7 @@ const roomSchema = new Schema({
   //user subdocument
   user: {
     userName: {
-      type: String,
+      type: String
     }
   },
 
@@ -70,7 +70,6 @@ const roomSchema = new Schema({
 });
 
 //Actually create's the Room Schema
-console.log("schema");
-console.log(roomSchema);
+
 
 module.exports = mongoose.model('Room', roomSchema);
