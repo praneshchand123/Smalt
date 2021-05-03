@@ -11,7 +11,11 @@ const useStyles = makeStyles({
         padding: "20px 40px",
         width: "100%",
         fontSize: 18,
+        position: 'absolute', 
+        bottom: 0, 
+        left: 0,
     },
+
 });
 
 export default function LandingPage() {
@@ -33,7 +37,6 @@ export default function LandingPage() {
                 </Button>
                 <Button
                     classes={{ root: classes.primaryButton }}
-                    style={{ position: 'absolute', bottom: 0, left: 0 }}
                     onClick={handleJoinPlaylist}
                 >
                     Join a playlist

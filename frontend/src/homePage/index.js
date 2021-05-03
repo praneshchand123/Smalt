@@ -1,9 +1,6 @@
 import React from 'react';
 import styles from "./style.module.css";
 import { Button, TextField, makeStyles, MenuItem, Menu, Table, TableBody, TableCell, TableHead, TableRow, } from '@material-ui/core';
-import Popper from '@material-ui/core/Popper';
-import { TableContainer } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
 
 
 const useStyles = makeStyles({
@@ -19,7 +16,11 @@ const useStyles = makeStyles({
         width: "300px",
         fontSize: 18,
         color: "white",
-        margin: "10px"
+        margin: "10px",
+        size: "large",
+    },
+    textInput: {
+        color: '#fff',
     },
     menuButton: {
         background: "#30A0F5",
@@ -27,7 +28,6 @@ const useStyles = makeStyles({
         width: "30%",
         padding: "18px 40px",
         fontSize: 18,
-
     },
     table: {
         width: 300,
@@ -41,8 +41,21 @@ const useStyles = makeStyles({
         padding: "18px 40px",
         fontSize: 18,
     },
+    tableRow: {
+        backgroundColor: '#333333',
+    },
+    tableCell: {
+        borderBottom: "none", 
+        color: "white",
+        align: "centre",
+    },
+    tableCellHead: {
+        borderBottom: "none", 
+        color: "white", 
+        fontSize: "18pt",
+        align: "centre",
+    }
 });
-
 
 export default function HomePage() {
 
@@ -50,11 +63,7 @@ export default function HomePage() {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    //const [anchorEl2, setAnchorEl2] = React.useState(null);
-
     const [playList, setPlayList] = React.useState(null);
-
-    const [tableAnchorEl, setTableAnchorEl] = React.useState(null);
 
     const handleOpenMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -64,46 +73,9 @@ export default function HomePage() {
         setAnchorEl(null);
     };
 
-
     const handleBack = () => {
         console.log('login');
     };
-
-    /*const handleOpenTable = (event) => {
-        setTableAnchorEl(tableAnchorEl ? null : event.currentTarget);
-        setPlayList(true)
-    };
-    */
-
-
-    const openTable = Boolean(tableAnchorEl);
-
-    /*const handleOpenSongsMenu = (event) => {
-        setAnchorEl2(event.currentTarget);
-    };
-
-    const handleSongsClose = () => {
-        setAnchorEl2(null);
-    };
-    
-    const addSong = (playList) => {
-        setPlayList((prev) => {
-          return [playList, ...prev];
-        });
-      };
-    */
-
-    /*
-    const handlePlayListTabel = () => {
-        if(table){
-            return <p className={styles.paraStyle}>Playlist is empty now, please add songs</p>
-        }else{
-            return <Table></Table>
-        }
-    }
-    */
-
-
 
     return (
         <div className={styles.rootContainer}>
@@ -115,34 +87,28 @@ export default function HomePage() {
                     classes={{ root: classes.menuButton }}
                     onClick={handleOpenMenu}
                     aria-controls="menu-list"
-                    aria-haspopup="true"
-                >
-                    Open Menu
+                    aria-haspopup="true">Open Menu
                 </Button>
                 <Menu
                     id="menu-list"
                     anchorEl={anchorEl}
                     keepMounted
                     open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                >
+                    onClose={handleClose}>
                     <MenuItem onClick={handleClose}>Login</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </div>
-
             <div className={styles.bodyPartContainer}>
                 <form>
-
                     <TextField
                         aria-controls="songs-list"
                         aria-haspopup="false"
                         classes={{ root: classes.textField }}
                         id="standard-basic"
-                        variant="outlined"
-                        size="large"
                         label="Search songs code"
+                        variant="outlined"
                         InputProps={{
                             style: { color: '#fff' },
                         }}
@@ -151,57 +117,40 @@ export default function HomePage() {
                         }}
                     />
                     <p className={styles.paraStyle}>Playlist {playList ? 'is below' : 'is empty, please add songs'}</p>
-                    {/*
-                <Menu
-                    id="songs-list"
-                    anchorEl={anchorEl2}
-                    keepMounted
-                    open={Boolean(anchorEl2)}
-                    onClose={handleSongsClose}
-                    >
-                    <MenuItem onClick={() => setPlayList('Song 1') }>Song 1</MenuItem>
-                    <MenuItem onClick={() => setPlayList('Song 2')}>Song 2</MenuItem>
-                    <MenuItem onClick={() => setPlayList('Song 3')}>Song 3</MenuItem>
-                </Menu>
-                */}
                     <Table classes={{ root: classes.table }}>
-                        <TableBody className={styles.tableStyle}>
-                            <TableRow style={{ backgroundColor: '#333333' }} className={styles.tableStyle}>
-                                <TableCell style={{ borderBottom: "none", color: "white", fontSize: "18pt" }} align="centre">Want you</TableCell>
-                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre" rowSpan={2}>
+                        <TableBody>
+                            <TableRow classes={{ root: classes.tableRow }}>
+                                <TableCell classes={{ root: classes.tableCellHead }}>Want you</TableCell>
+                                <TableCell classes={{ root: classes.tableCell }} rowSpan={2}>
                                     <img
                                         src="https://i.scdn.co/image/ab67616d00004851c34e9b33adb0030233a6efef"
                                         className={styles.image}
                                     />
                                 </TableCell>
                             </TableRow>
-                            <TableRow style={{ backgroundColor: '#333333' }}>
-                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Kanine</TableCell>
-
-
+                            <TableRow classes={{ root: classes.tableRow }}>
+                                <TableCell classes={{ root: classes.tableCell }}>Kanine</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
-
                     <Table classes={{ root: classes.table }}>
-                        <TableBody >
-                            <TableRow style={{ backgroundColor: '#333333' }}>
-                                <TableCell style={{ borderBottom: "none", color: "white", fontSize: "18pt" }} align="centre">Song</TableCell>
-                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre" rowSpan={2}>
+                        <TableBody>
+                            <TableRow classes={{ root: classes.tableRow }}>
+                                <TableCell classes={{ root: classes.tableCellHead }}>Song</TableCell>
+                                <TableCell classes={{ root: classes.tableCell }} rowSpan={2}>
                                     <img
                                         src="https://i.scdn.co/image/ab67616d00001e024719d135efa3d7567c0d7faa"
                                         className={styles.image}
                                     />
                                 </TableCell>
                             </TableRow>
-                            <TableRow style={{ backgroundColor: '#333333' }}>
-                                <TableCell style={{ borderBottom: "none", color: "white" }} align="centre">Artist</TableCell>
+                            <TableRow classes={{ root: classes.tableRow }}>
+                                <TableCell classes={{ root: classes.tableCell }}>Artist</TableCell>
                             </TableRow>
                         </TableBody>
                     </Table>
                 </form>
             </div>
-
         </div >
     );
 }
