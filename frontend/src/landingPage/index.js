@@ -31,28 +31,13 @@ export default function LandingPage() {
         history.push('/joinplaylist');
     };
 
-      // Similar to componentDidMount and componentDidUpdate:
-  useEffect(() => {
-    // Update the document title using the browser API
-    //console.log(window.location.search);
-    var code = new URLSearchParams(window.location.search).get("code")
-    if(code != null){
-        console.log("code found")
-        const payload={
-            params: {
-                authCode: code
-            }
-        };
-        const response = axios.get('http://localhost:3001/users/auth/code', payload);
-    }
-    console.log(code);
-    
-  });
+
+
 
     async function handleLogin() {
         const payload={
             params: {
-                uri: 'http://localhost:3000/'
+                uri: 'http://localhost:3000/host'
             }
         };
         // Make a request for a user with a given ID
