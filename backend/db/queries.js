@@ -10,7 +10,7 @@ exports.createNewRoom = function (token, hostName) {
   const room = new Room({
     host: {
       userName: hostName,
-      oAuthToken: token
+      Tokens: token
     },
     code: codee,
     playlist:{

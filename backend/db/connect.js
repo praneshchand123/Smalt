@@ -14,3 +14,7 @@ exports.connectToDatabase =  function (connectionString = DEFAULT_CONNECTION_STR
         // useUnifiedTopology: true 
     });
 }
+
+exports.disconnect = function(){
+    mongoose.disconnect();
+}

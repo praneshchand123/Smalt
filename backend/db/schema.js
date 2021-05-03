@@ -29,11 +29,16 @@ const roomSchema = new Schema({
       required: true
     },
 
-    oAuthToken: {
+    Tokens: {
+      accessToken:{
       type: String,
       required: true
-    }
-  },
+      },
+      refreshToken:{
+        type: String,
+        required: true
+        }
+    },
 
   //playlist subdocument
   playlist: {
@@ -64,7 +69,7 @@ const roomSchema = new Schema({
 
     }]
   }
-}, {
+}, 
   timestamps: {}
   /* This object allows us to specify more config info. In this case, we're enabling automatic timestamps 
   using the default options. */

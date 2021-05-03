@@ -14,10 +14,10 @@ var testSong = {
 var testUser = {
   userName: makeCode(5)
 }
-const connectionString = "mongodb+srv://smaltadmin:AG47gX6WIP3YUaB2@cluster0.knzot.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const TESTCONNECTIONSTRING = "mongodb+srv://smaltadmin:AG47gX6WIP3YUaB2@cluster0.knzot.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 
-if (connect.connectToDatabase()){
+if (connect.connectToDatabase(TESTCONNECTIONSTRING)){
 console.log('connection success');
 }
 query.clearDB();
