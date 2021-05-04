@@ -3,3 +3,22 @@
   width: 64px;
   float: right;
 }
+.table {
+  width: 300;
+  background: #595959;
+  margin: 10px;
+}
+.tableRow {
+  background: #333333;
+}
+.tableCell {
+  border-bottom: none;
+  color: white;
+  text-align: center;
+}
+.tableCellHead {
+  border-bottom: none;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}

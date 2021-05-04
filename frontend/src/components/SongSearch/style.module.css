@@ -3,3 +3,19 @@
   width: 64px;
   float: right;
 }
+.textField {
+  background: #595959;
+  width: 300px;
+  font-size: 18;
+  color: white;
+  margin: 10px;
+  size: large;
+}
+.textInput {
+  color: #fff;
+}
+.menuItem {
+  justify-content: right;
+  z-index: 20;
+  position: relative;
+}

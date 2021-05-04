@@ -25,11 +25,43 @@
 .menuButton {
   float: right;
   position: absolute;
-  color: "#30A0F5";
-  width: "30%";
   size: 15;
   top: 0px;
   right: 0px;
+  font-size: 18;
+  width: 30%;
+  background-color: #333333;
+  border-radius: 30px;
+  padding: 20px 40px;
+  font-size: 18px;
+  color: white;
+  box-shadow: 0 0 8px 0 white;
+}
+
+.backButton {
+  size: 15;
+  font-size: 18;
+  width: 30%;
+  background-color: #333333;
+  border-radius: 30px;
+  padding: 20px 40px;
+  font-size: 18px;
+  color: white;
+  box-shadow: 0 0 8px 0 white;
+}
+
+.showPlayListButton {
+  background: #333333;
+  border-radius: 30;
+  width: 60%;
+  padding: 18px 40px;
+  font-size: 18;
+}
+
+.menuItem {
+  justify-content: right;
+  z-index: 20;
+  position: relative;
 }
 
 .image {

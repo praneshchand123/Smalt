@@ -4,62 +4,11 @@ import styles from "./style.module.css";
 import { SongSearch, Playlist } from "../../components";
 import {
   Button,
-  makeStyles,
   MenuItem,
   Menu,
 } from "@material-ui/core";
 
-const useStyles = makeStyles({
-  backButton: {
-    background: "#30A0F5",
-    borderRadius: 30,
-    padding: "18px 40px",
-    width: "30%",
-    fontSize: 18,
-  },
-  menuButton: {
-    background: "#30A0F5",
-    borderRadius: 30,
-    width: "30%",
-    padding: "18px 40px",
-    fontSize: 18,
-  },
-  table: {
-    width: 300,
-    background: "#595959",
-    margin: "10px",
-  },
-  showPlayListButton: {
-    background: "#30A0F5",
-    borderRadius: 30,
-    width: "60%",
-    padding: "18px 40px",
-    fontSize: 18,
-  },
-  menuItem: {
-    justifyContent: "right",
-    zIndex: 20,
-    position: "relative",
-  },
-  tableRow: {
-    backgroundColor: "#333333",
-  },
-  tableCell: {
-    borderBottom: "none",
-    color: "white",
-    align: "centre",
-  },
-  tableCellHead: {
-    borderBottom: "none",
-    color: "white",
-    fontSize: "18pt",
-    align: "centre",
-  },
-});
-
 export default function HomePage() {
-  const classes = useStyles();
-
   const history = useHistory();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -79,12 +28,11 @@ export default function HomePage() {
   return (
     <div className={styles.rootContainer}>
       <div class="subdiv_allinline">
-        <Button classes={{ root: classes.backButton }} onClick={handleBack}>
+        <Button className={styles.backButton} onClick={handleBack}>
           Back
         </Button>
         <Button
           className={styles.menuButton}
-          classes={{ root: classes.menuButton }}
           onClick={handleOpenMenu}
           aria-controls="menu-list"
           aria-haspopup="true"
