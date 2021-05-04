@@ -1,10 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import './App.css';
-import LandingPage from './landingPage';
-import JoinPlaylistPage from './joinPlaylistPage';
-import HomePage from './homePage';
-import HostPage from './hostPage';
+import { LandingPage, JoinPlaylistPage, HomePage, HostPage } from './pages';
 
 function App() {
   return (

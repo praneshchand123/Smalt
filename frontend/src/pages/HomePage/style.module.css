@@ -1,0 +1,39 @@
+.rootContainer {
+  padding: 15px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background: #333333;
+}
+
+.bodyPartContainer {
+  margin: 0;
+  position: absolute;
+  height: 200px;
+  width: 90%;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.menuButton {
+  float: right;
+  position: absolute;
+  color: "#30A0F5";
+  width: "30%";
+  size: 15;
+  top: 0px;
+  right: 0px;
+}
+
+.image {
+  height: 64px;
+  width: 64px;
+  float: right;
+}

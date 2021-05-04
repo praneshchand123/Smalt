@@ -1,4 +1,5 @@
-.App {
+.rootContainer {
+  padding: 15px;
   position: fixed;
   left: 0;
   top: 0;

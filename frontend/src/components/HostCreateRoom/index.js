@@ -1,10 +1,8 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React from "react";
 import styles from "./style.module.css";
+import { useHistory } from "react-router-dom";
 import { Button, TextField, makeStyles } from "@material-ui/core";
-import { green, purple } from "@material-ui/core/colors";
 import axios from "axios";
-
 const useStyles = makeStyles({
   primaryButton: {
     background: "#30A0F5",
@@ -21,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HostLoginPage() {
+export default function HostCreateRoom() {
   const classes = useStyles();
   const history = useHistory();
 
@@ -37,15 +35,15 @@ export default function HostLoginPage() {
       const response = axios.post("http://localhost:3001/users/auth/code", room);
     }
     setUsername("");
+    history.push("/home");
   };
 
   const handleBack = () => {
-    console.log("back");
-    history.goBack();
+    history.push("/");
   };
 
   return (
-    <div className={styles.rootContainer}>
+    <>
       <Button classes={{ root: classes.primaryButton }} onClick={handleBack}>
         Back
       </Button>
@@ -74,6 +72,6 @@ export default function HostLoginPage() {
           Enter
         </Button>
       </div>
-    </div>
+    </>
   );
 }
