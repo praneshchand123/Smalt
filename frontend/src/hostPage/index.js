@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styles from "./style.module.css";
-import { useHistory } from "react-router-dom";
 import { Button, TextField, makeStyles } from "@material-ui/core";
 import { green, purple } from "@material-ui/core/colors";
 import axios from "axios";
+
 const useStyles = makeStyles({
   primaryButton: {
     background: "#30A0F5",
@@ -20,26 +21,22 @@ const useStyles = makeStyles({
   },
 });
 
-export default function hostLoginPage() {
+export default function HostLoginPage() {
   const classes = useStyles();
   const history = useHistory();
 
+  const [username, setUsername] = React.useState("");
+
   const createRoom = () => {
     var code = new URLSearchParams(window.location.search).get("code");
-    if (code != null) {
-      console.log("code found");
-      const payload = {
-        params: {
-          authCode: code,
-          userName: "jimmy",
-        },
+    if (code != null && username !== "") {
+      const room = {
+        authCode: code,
+        userName: username,
       };
-      const response = axios.get(
-        "http://localhost:3001/users/auth/code",
-        payload
-      );
+      const response = axios.post("http://localhost:3001/users/auth/code", room);
     }
-    console.log(code);
+    setUsername("");
   };
 
   const handleBack = () => {
@@ -58,8 +55,9 @@ export default function hostLoginPage() {
             classes={{ root: classes.textField }}
             id="standard-basic"
             variant="outlined"
-            size="large"
             label="Username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
             InputProps={{
               style: { color: "#fff" },
             }}

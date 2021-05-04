@@ -8,11 +8,11 @@ router.get("/auth", async (req, res) => {
   res.json(spotify.createAuthRequest(req.query.uri));
 });
 
-router.get("/auth/code", async (req, res) => {
+router.post("/auth/code", async (req, res) => {
   var accessAndRefreshTokens = await spotify.fetchAccessToken(
-    req.query.authCode
+    req.body.authCode
   );
-  var hostUserName = req.query.userName;
+  var hostUserName = req.body.userName;
   console.log(`accesstoken: ${accessAndRefreshTokens.accessToken}`);
   console.log(`username: ${hostUserName}`);
   connect.connectToDatabase();
