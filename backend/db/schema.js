@@ -25,7 +25,6 @@ const roomSchema = new Schema({
   host: {
     userName: {
       type: String,
-      unique: true,
       required: true,
     },
 
@@ -39,39 +38,39 @@ const roomSchema = new Schema({
         required: true,
       },
     },
+  },
 
-    //playlist subdocument
-    playlist: {
-      currentSong: {
-        type: Schema.Types.ObjectId,
-      },
-      //songs nested subdocument. This array syntax means we can have multiple songs in a given playlist
-      songs: [
-        {
-          upVoteCount: {
-            type: Number,
-          },
-          name: {
-            type: String,
-            required: true,
-          },
-          imageURL: {
-            type: String,
-            required: true,
-          },
-          artistNames: [
-            {
-              type: String,
-              required: true,
-            },
-          ],
-          songDuration: {
-            type: Number,
-            required: true,
-          }, //in milliseconds
-        },
-      ],
+  //playlist subdocument
+  playlist: {
+    currentSong: {
+      type: Schema.Types.ObjectId,
     },
+    //songs nested subdocument. This array syntax means we can have multiple songs in a given playlist
+    songs: [
+      {
+        upVoteCount: {
+          type: Number,
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+        imageURL: {
+          type: String,
+          required: true,
+        },
+        artistNames: [
+          {
+            type: String,
+            required: true,
+          },
+        ],
+        songDuration: {
+          type: Number,
+          required: true,
+        }, //in milliseconds
+      },
+    ],
   },
   timestamps: {},
   /* This object allows us to specify more config info. In this case, we're enabling automatic timestamps 

@@ -11,7 +11,7 @@ router.get('/search', async (req, res)  => {
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization": "Bearer BQALmpZtTPX_mRXXOPdu0lPqT7oSmF94vdUJqeciVbT8dvxcSnC-SANdtSXHSUcFkxZQ-rhF3tA12gIqU_uKnxSw4afW2ed8o5eKWGbPUfIueVTGjpiymdVnFmi4r58PxJ0QnNfubG4e",
+        "Authorization": "Bearer BQBRrGS4sWwq2409hALZi0hyPi7erzP7TqqKuFjKEyA4yed_7tFQVzjpseKVAL3oUOuCDQelbCE1Odoom_0xGHS7NMBStXcNFXRSEhpcBrrRu5DOnjresKxdiamYRyth6GPnJ810GKVl",
     }
     console.log(req.query.searchTerm);
     var response = await axios.get(spotify.createSearchQuery(req.query.searchTerm), {
