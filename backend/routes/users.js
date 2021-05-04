@@ -1,36 +1,22 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const axios = require('axios');
-const spotify = require('../Spotify/spotifyHandler.js');
+const spotify = require("../Spotify/spotifyHandler.js");
+const query = require("../db/queries");
+const connect = require("../db/connect");
 
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.json([
-    { id: 1, name: "reeee" },
-    { id: 2, name: "xd" },
-    { id: 3, name: "asdf" }
-  ])
-});
-
-//register login
-router.post('/', function (req, res, next) {
-  res.json([
-    { id: 1, name: "reeee" },
-    { id: 2, name: "xd" },
-    { id: 3, name: "asdf" }
-  ])
-});
-
-
-
-router.get('/auth', async (req, res) => {
-  //payload = spotify.createAuthRequest(req.query.uri)
+router.get("/auth", async (req, res) => {
   res.json(spotify.createAuthRequest(req.query.uri));
 });
 
-router.get('/auth/code', async (req, res) => {
-  var response = await spotify.fetchAccessToken(req.query.authCode);
-  console.log(response);
+router.post("/auth/code", async (req, res) => {
+  var accessAndRefreshTokens = await spotify.fetchAccessToken(
+    req.body.authCode
+  );
+  var hostUserName = req.body.userName;
+  console.log(`accesstoken: ${accessAndRefreshTokens.accessToken}`);
+  console.log(`username: ${hostUserName}`);
+  connect.connectToDatabase();
+  console.log(await query.createNewRoom(accessAndRefreshTokens, hostUserName));
 });
 
 module.exports = router;
