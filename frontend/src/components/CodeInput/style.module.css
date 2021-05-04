@@ -18,6 +18,17 @@
     color: white;
     box-shadow: 0 0 8px 0 white;
 }
+.enterButton {
+    position: absolute;
+    bottom: 0;
+    width: 30%;
+    background-color: #333333;
+    border-radius: 30px;
+    padding: 20px 40px;
+    font-size: 18px;
+    color: white;
+    box-shadow: 0 0 8px 0 white;
+}
 .textField {
     background: #595959;
     width: 300px;

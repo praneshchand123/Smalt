@@ -31,9 +31,8 @@ export default function CodeInput() {
           />
         </form>
         <Button
-          className={styles.primaryButton}
+          className={styles.enterButton}
           onClick={handleBack}
-          style={{ position: "absolute", bottom: 0, width: 300 }}
         >
           Enter
         </Button>

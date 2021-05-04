@@ -50,22 +50,3 @@
   box-shadow: 0 0 8px 0 white;
 }
 
-.showPlayListButton {
-  background: #333333;
-  border-radius: 30;
-  width: 60%;
-  padding: 18px 40px;
-  font-size: 18;
-}
-
-.menuItem {
-  justify-content: right;
-  z-index: 20;
-  position: relative;
-}
-
-.image {
-  height: 64px;
-  width: 64px;
-  float: right;
-}
