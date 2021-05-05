@@ -19,6 +19,7 @@ export default function Playlist() {
     socket.on('WhichRoom', function () {
       console.log("recieved request for room");
       socket.emit('SpecifyRoom', { my: 'data' });
+
     });
   },[])
 

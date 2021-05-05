@@ -21,11 +21,11 @@ const TESTCONNECTIONSTRING =
 if (connect.connectToDatabase(TESTCONNECTIONSTRING)) {
   console.log("connection success");
 }
-query.clearDB();
+//query.clearDB();
 var roomCode = query.createNewRoom(testToken, makeCode(4));
 
-query.addSongToPool(testSong, roomCode);
-query.addUserToRoom(testUser, roomCode);
+//query.addSongToPool(testSong, roomCode);
+//query.addUserToRoom(testUser, roomCode);
 
 function makeCode(length) {
   var result = [];
