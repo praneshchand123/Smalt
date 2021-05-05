@@ -61,7 +61,7 @@ export default function SongSearch() {
         variant="outlined"
         label="Search songs"
         autoFocus={true}
-        onChange={(val) => handleSearch(val.target.value)}
+        onChange={val => handleSearch(val.target.value)}
         InputProps={{
           style: { color: "#fff" },
         }}
