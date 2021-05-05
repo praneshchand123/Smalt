@@ -6,6 +6,19 @@ import { Button, TextField, makeStyles } from "@material-ui/core";
 export default function CodeInput() {
   const history = useHistory();
 
+  const [emptyFieldFlag, setEmptyFieldFlag] = React.useState(false);
+
+  const [textValue, setTextValue] = React.useState("");
+
+  const handleEnter = () => {
+    if (textValue !== "") {
+      setTextValue("");
+      history.push("/home");
+    }else{
+      setEmptyFieldFlag(true);
+    }
+  };
+
   const handleBack = () => {
     history.goBack();
   };
@@ -22,6 +35,10 @@ export default function CodeInput() {
             id="standard-basic"
             variant="outlined"
             label="Playlist code"
+            value={textValue}
+            error={emptyFieldFlag}
+            helperText={emptyFieldFlag && 'Please enter a username'}
+            onChange={e => {setTextValue(e.target.value); setEmptyFieldFlag(false)}}
             InputProps={{
               style: { color: "#fff" },
             }}
@@ -32,7 +49,7 @@ export default function CodeInput() {
         </form>
         <Button
           className={styles.enterButton}
-          onClick={handleBack}
+          onClick={handleEnter}
         >
           Enter
         </Button>

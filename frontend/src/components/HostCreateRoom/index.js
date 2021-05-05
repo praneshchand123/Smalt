@@ -9,6 +9,8 @@ export default function HostCreateRoom() {
 
   const [username, setUsername] = React.useState("");
 
+  const [emptyFieldFlag, setEmptyFieldFlag] = React.useState(false);
+
   const createRoom = () => {
     var code = new URLSearchParams(window.location.search).get("code");
     if (code != null && username !== "") {
@@ -17,9 +19,11 @@ export default function HostCreateRoom() {
         userName: username,
       };
       const response = axios.post("http://localhost:3001/users/auth/code", room);
+      setUsername("");
+      history.push("/home");
+    } else {
+      setEmptyFieldFlag(true);
     }
-    setUsername("");
-    history.push("/home");
   };
 
   const handleBack = () => {
@@ -39,7 +43,9 @@ export default function HostCreateRoom() {
             variant="outlined"
             label="Username"
             value={username}
-            onChange={e => setUsername(e.target.value)}
+            error={emptyFieldFlag}
+            helperText={emptyFieldFlag && 'Please enter a username'}
+            onChange={e => {setUsername(e.target.value); setEmptyFieldFlag(false)}}
             InputProps={{
               style: { color: "#fff" },
             }}
