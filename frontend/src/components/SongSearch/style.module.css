@@ -3,3 +3,14 @@
   width: 64px;
   float: right;
 }
+.textField {
+  background: #595959;
+  width: 92%;
+  font-size: 18;
+  color: white;
+}
+.menuItem {
+  justify-content: right;
+  z-index: 20;
+  position: relative;
+}

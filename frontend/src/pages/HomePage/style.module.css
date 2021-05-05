@@ -22,18 +22,37 @@
   text-align: center;
 }
 
+.componentsContainer {
+  justify-content: center;
+  text-align: center;
+  width: 80%;
+}
+
 .menuButton {
   float: right;
   position: absolute;
-  color: "#30A0F5";
-  width: "30%";
   size: 15;
   top: 0px;
   right: 0px;
+  font-size: 18;
+  width: 30%;
+  background-color: #333333;
+  border-radius: 30px;
+  padding: 20px 40px;
+  font-size: 18px;
+  color: white;
+  box-shadow: 0 0 8px 0 white;
 }
 
-.image {
-  height: 64px;
-  width: 64px;
-  float: right;
+.backButton {
+  size: 15;
+  font-size: 18;
+  width: 30%;
+  background-color: #333333;
+  border-radius: 30px;
+  padding: 20px 40px;
+  font-size: 18px;
+  color: white;
+  box-shadow: 0 0 8px 0 white;
 }
+

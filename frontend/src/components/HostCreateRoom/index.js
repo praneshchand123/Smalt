@@ -3,24 +3,8 @@ import styles from "./style.module.css";
 import { useHistory } from "react-router-dom";
 import { Button, TextField, makeStyles } from "@material-ui/core";
 import axios from "axios";
-const useStyles = makeStyles({
-  primaryButton: {
-    background: "#30A0F5",
-    borderRadius: 30,
-    padding: "18px 40px",
-    width: "30%",
-    fontSize: 18,
-  },
-  textField: {
-    background: "#595959",
-    width: "300px",
-    fontSize: 18,
-    color: "white",
-  },
-});
 
 export default function HostCreateRoom() {
-  const classes = useStyles();
   const history = useHistory();
 
   const [username, setUsername] = React.useState("");
@@ -44,13 +28,13 @@ export default function HostCreateRoom() {
 
   return (
     <>
-      <Button classes={{ root: classes.primaryButton }} onClick={handleBack}>
+      <Button className={styles.primaryButton} onClick={handleBack}>
         Back
       </Button>
       <div className={styles.textFieldContainer}>
         <form noValidate autoComplete="off">
           <TextField
-            classes={{ root: classes.textField }}
+            className={styles.textField}
             id="standard-basic"
             variant="outlined"
             label="Username"
@@ -65,7 +49,7 @@ export default function HostCreateRoom() {
           />
         </form>
         <Button
-          classes={{ root: classes.primaryButton }}
+          className={styles.primaryButton}
           onClick={createRoom}
           style={{ position: "absolute", bottom: 0, width: 300 }}
         >

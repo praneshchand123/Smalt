@@ -3,25 +3,7 @@ import styles from "./style.module.css";
 import { useHistory } from "react-router-dom";
 import { Button, TextField, makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles({
-  primaryButton: {
-    background: "#30A0F5",
-    borderRadius: 30,
-    padding: "18px 40px",
-    width: "30%",
-    fontSize: 18,
-  },
-  textField: {
-    background: "#595959",
-    width: "300px",
-    fontSize: 18,
-    color: "white",
-    size: "large",
-  },
-});
-
 export default function CodeInput() {
-  const classes = useStyles();
   const history = useHistory();
 
   const handleBack = () => {
@@ -30,13 +12,13 @@ export default function CodeInput() {
 
   return (
     <>
-      <Button classes={{ root: classes.primaryButton }} onClick={handleBack}>
+      <Button className={styles.primaryButton} onClick={handleBack}>
         Back
       </Button>
       <div className={styles.textFieldContainer}>
         <form noValidate autoComplete="off">
           <TextField
-            classes={{ root: classes.textField }}
+            className={styles.textField}
             id="standard-basic"
             variant="outlined"
             label="Playlist code"
@@ -49,9 +31,8 @@ export default function CodeInput() {
           />
         </form>
         <Button
-          classes={{ root: classes.primaryButton }}
+          className={styles.enterButton}
           onClick={handleBack}
-          style={{ position: "absolute", bottom: 0, width: 300 }}
         >
           Enter
         </Button>

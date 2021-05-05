@@ -3,7 +3,6 @@ import axios from "axios";
 import styles from "./style.module.css";
 import {
   TextField,
-  makeStyles,
   MenuItem,
   MenuList,
   Grow,
@@ -12,30 +11,8 @@ import {
 import Popper from "@material-ui/core/Popper";
 import Paper from "@material-ui/core/Paper";
 
-const useStyles = makeStyles({
-  textField: {
-    background: "#595959",
-    width: "300px",
-    fontSize: 18,
-    color: "white",
-    margin: "10px",
-    size: "large",
-  },
-  textInput: {
-    color: "#fff",
-  },
-  menuItem: {
-    justifyContent: "right",
-    zIndex: 20,
-    position: "relative",
-  },
-});
-
 export default function SongSearch() {
-  const classes = useStyles();
-
   const [suggestions, setSuggestions] = React.useState();
-
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -47,7 +24,6 @@ export default function SongSearch() {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
 
@@ -80,10 +56,9 @@ export default function SongSearch() {
         autoComplete="off"
         aria-controls="songs-list"
         aria-haspopup="false"
-        classes={{ root: classes.textField }}
+        className={styles.textField}
         id="searchField"
         variant="outlined"
-        size="large"
         label="Search songs"
         autoFocus={true}
         onChange={(val) => handleSearch(val.target.value)}
@@ -121,7 +96,7 @@ export default function SongSearch() {
                       <MenuItem
                         onClick={handleCloseSuggestions}
                         key={index}
-                        classes={{ root: classes.menuItem }}
+                        className={styles.menuItem}
                       >
                         <label style={{ float: "left" }}>{track.name}</label>
                         <img
