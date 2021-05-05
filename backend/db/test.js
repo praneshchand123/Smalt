@@ -8,6 +8,10 @@ var testSong = {
   songDuration: 10,
 };
 
+var testToken = {
+  accessToken : makeCode(6),
+  refreshToken : makeCode(6)
+}
 var testUser = {
   userName: makeCode(5),
 };
@@ -17,11 +21,11 @@ const TESTCONNECTIONSTRING =
 if (connect.connectToDatabase(TESTCONNECTIONSTRING)) {
   console.log("connection success");
 }
-query.clearDB();
-var roomCode = query.createNewRoom(makeCode(3), makeCode(4));
+//query.clearDB();
+var roomCode = query.createNewRoom(testToken, makeCode(4));
 
-query.addSongToPool(testSong, roomCode);
-query.addUserToRoom(testUser, roomCode);
+//query.addSongToPool(testSong, roomCode);
+//query.addUserToRoom(testUser, roomCode);
 
 function makeCode(length) {
   var result = [];

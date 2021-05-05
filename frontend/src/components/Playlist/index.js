@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./style.module.css";
 import {
   Table,
@@ -6,40 +6,45 @@ import {
   TableCell,
   TableRow,
 } from "@material-ui/core";
-
+import socketIOClient from "socket.io-client";
+const ENDPOINT = "http://localhost:3001/";
 export default function Playlist() {
+
+  const [data, setResponse] = useState("");
+  useEffect(() => {
+    const socket = socketIOClient(ENDPOINT);
+    socket.on("heresASong", data => {
+      setResponse(data);
+    });
+    socket.on('WhichRoom', function () {
+      console.log("recieved request for room");
+      socket.emit('SpecifyRoom', { my: 'data' });
+
+    });
+  },[])
+
+
   return (
     <>
       <Table className={styles.table}>
-      <TableBody>
-          <TableRow className={styles.tableRow}>
-            <TableCell className={styles.tableCellHead}>
-              Want you
+        <TableBody>
+        <>
+      <TableRow className={styles.tableRow}>
+        <TableCell className={styles.tableCellHead}>
+          {data.name}
             </TableCell>
-            <TableCell className={styles.tableCell} rowSpan={2}>
-              <img
-                src="https://i.scdn.co/image/ab67616d00004851c34e9b33adb0030233a6efef"
-                className={styles.image}
-              />
-            </TableCell>
-          </TableRow>
-          <TableRow className={styles.tableRow}>
-            <TableCell className={styles.tableCell}>Kanine</TableCell>
-          </TableRow>
-          <TableRow className={styles.tableRow}>
-            <TableCell className={styles.tableCellHead}>
-              Song
-            </TableCell>
-            <TableCell className={styles.tableCell} rowSpan={2}>
-              <img
-                src="https://i.scdn.co/image/ab67616d00001e024719d135efa3d7567c0d7faa"
-                className={styles.image}
-              />
-            </TableCell>
-          </TableRow>
-          <TableRow className={styles.tableRow}>
-            <TableCell className={styles.tableCell}>Artist</TableCell>
-          </TableRow>
+        <TableCell className={styles.tableCell} rowSpan={2}>
+          <img
+            src= {data.src}
+            className={styles.image}
+          />
+        </TableCell>
+      </TableRow>
+      <TableRow className={styles.tableRow}>
+
+        <TableCell className={styles.tableCell}>{data.artist}</TableCell>
+      </TableRow>
+    </>
         </TableBody>
       </Table>
     </>
