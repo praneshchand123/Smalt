@@ -6,7 +6,6 @@
 .table {
   width: 300;
   background: #595959;
-  margin: 10px;
 }
 .tableRow {
   background: #333333;
@@ -14,11 +13,11 @@
 .tableCell {
   border-bottom: none;
   color: white;
-  text-align: center;
+  text-align: left;
 }
 .tableCellHead {
   border-bottom: none;
   color: white;
   font-size: 18px;
-  text-align: center;
+  text-align: left;
 }

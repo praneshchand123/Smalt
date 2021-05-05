@@ -52,7 +52,7 @@ export default function HomePage() {
         </Menu>
       </div>
       <div className={styles.bodyPartContainer}>
-        <form>
+        <form className={styles.componentsContainer}>
           <SongSearch />
           <Playlist />
         </form>

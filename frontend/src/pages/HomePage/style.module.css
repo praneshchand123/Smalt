@@ -22,6 +22,12 @@
   text-align: center;
 }
 
+.componentsContainer {
+  justify-content: center;
+  text-align: center;
+  width: 80%;
+}
+
 .menuButton {
   float: right;
   position: absolute;

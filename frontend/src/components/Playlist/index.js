@@ -11,7 +11,7 @@ export default function Playlist() {
   return (
     <>
       <Table className={styles.table}>
-        <TableBody>
+      <TableBody>
           <TableRow className={styles.tableRow}>
             <TableCell className={styles.tableCellHead}>
               Want you
@@ -26,10 +26,6 @@ export default function Playlist() {
           <TableRow className={styles.tableRow}>
             <TableCell className={styles.tableCell}>Kanine</TableCell>
           </TableRow>
-        </TableBody>
-      </Table>
-      <Table className={styles.table}>
-        <TableBody>
           <TableRow className={styles.tableRow}>
             <TableCell className={styles.tableCellHead}>
               Song
