@@ -49,6 +49,15 @@ export default function SongSearch() {
     }
   };
 
+  const handleSuggestionSelect = async (index) => {
+    console.log(index);
+    const toAdd = {
+      room: "p87V4z",
+      track: suggestions[index],
+    }
+    const response = await axios.post("http://localhost:3001/users/song", toAdd);
+  }
+
   return (
     <>
       <TextField
@@ -94,12 +103,13 @@ export default function SongSearch() {
                   {suggestions.map((track, index) => {
                     return (
                       <MenuItem
-                        onClick={handleCloseSuggestions}
-                        key={index}
+                        id={index}
+                        onClick={e => handleSuggestionSelect(e.target.id)}
                         className={styles.menuItem}
                       >
-                        <label style={{ float: "left" }}>{track.name}</label>
+                        <label id={index} style={{ float: "left" }}>{track.name}</label>
                         <img
+                          id={index}
                           src={track.imageURL}
                           className={styles.image}
                           alt=""

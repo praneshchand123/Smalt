@@ -11,7 +11,7 @@ export default function Playlist() {
   return (
     <>
       <Table className={styles.table}>
-      <TableBody>
+        <TableBody>
           <TableRow className={styles.tableRow}>
             <TableCell className={styles.tableCellHead}>
               Want you

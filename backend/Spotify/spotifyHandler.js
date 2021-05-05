@@ -20,6 +20,7 @@ const NEXT = "https://api.spotify.com/v1/me/player/next";
 const PREVIOUS = "https://api.spotify.com/v1/me/player/previous";
 const PLAYER = "https://api.spotify.com/v1/me/player";
 const TRACKS = "https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks";
+const GETTRACK = "https://api.spotify.com/v1/tracks/";
 const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
 const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
 const SEARCH = "https://api.spotify.com/v1/search";
@@ -42,6 +43,14 @@ exports.createSearchQuery = function (searchTerm) {
     let url = SEARCH;
     url += "?q=" + searchTerm;
     url += "&type=track&market=NZ&limit=4&offset=0";
+    return url;
+}
+
+exports.createGetTrackQuery = function (trackId) {
+    var url = GETTRACK;
+    url += trackId;
+    url += "?market=NZ";
+    console.log(url);
     return url;
 }
 
