@@ -1,6 +1,6 @@
 var Room = require("./schema.js");
 
-exports.createNewRoom = function (token, hostName) {
+exports.createNewRoom = async function (token, hostName) {
   codee = makeCode(6);
   const room = new Room({
     host: {
@@ -13,14 +13,14 @@ exports.createNewRoom = function (token, hostName) {
     },
   });
 
-  addData(room);
+  await addData(room);
   return codee;
 };
 
 exports.addSongToPool = async function (song, roomId) {
   room = await getRoomById(roomId);
   room.playlist.songs.push(song);
-  room.save();
+  await room.save();
 };
 
 exports.addUserToRoom = async function (user, roomId) {
