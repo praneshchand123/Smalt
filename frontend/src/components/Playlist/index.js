@@ -21,30 +21,30 @@ export default function Playlist() {
       socket.emit('SpecifyRoom', { my: 'data' });
 
     });
-  },[])
+  }, [])
 
 
   return (
     <>
       <Table className={styles.table}>
         <TableBody>
-        <>
-      <TableRow className={styles.tableRow}>
-        <TableCell className={styles.tableCellHead}>
-          {data.name}
-            </TableCell>
-        <TableCell className={styles.tableCell} rowSpan={2}>
-          <img
-            src= {data.src}
-            className={styles.image}
-          />
-        </TableCell>
-      </TableRow>
-      <TableRow className={styles.tableRow}>
+          <>
+            <TableRow className={styles.tableRow}>
+              <TableCell className={styles.tableCellHead}>
+                {data.name}
+              </TableCell>
+              <TableCell className={styles.tableCell} rowSpan={2}>
+                <img
+                  src={data.src}
+                  className={styles.image}
+                />
+              </TableCell>
+            </TableRow>
+            <TableRow className={styles.tableRow}>
 
-        <TableCell className={styles.tableCell}>{data.artist}</TableCell>
-      </TableRow>
-    </>
+              <TableCell className={styles.tableCell}>{data.artist}</TableCell>
+            </TableRow>
+          </>
         </TableBody>
       </Table>
     </>

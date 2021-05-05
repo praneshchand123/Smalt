@@ -69,6 +69,10 @@ const roomSchema = new Schema({
           type: Number,
           required: true,
         }, //in milliseconds
+        id: {
+          type: String,
+          required: true,
+        } //spotify id
       },
     ],
   },

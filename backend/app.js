@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var connect = require('./db/connect');
 var routes = require('./routes');
 var usersRouter = require('./routes/users');
 
@@ -37,5 +38,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+console.log(`connectiontodb:${connect.connectToDatabase()}`);
 
 module.exports = app;
