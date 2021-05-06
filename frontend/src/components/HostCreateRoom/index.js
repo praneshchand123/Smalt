@@ -36,7 +36,7 @@ export default function HostCreateRoom() {
         Back
       </Button>
       <div className={styles.textFieldContainer}>
-        <form noValidate autoComplete="off">
+        <div noValidate autoComplete="off">
           <TextField
             className={styles.textField}
             id="standard-basic"
@@ -53,7 +53,7 @@ export default function HostCreateRoom() {
               style: { color: "#fff" },
             }}
           />
-        </form>
+        </div>
         <Button
           className={styles.primaryButton}
           onClick={createRoom}
