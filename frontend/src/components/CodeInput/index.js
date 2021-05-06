@@ -29,7 +29,7 @@ export default function CodeInput() {
         Back
       </Button>
       <div className={styles.textFieldContainer}>
-        <div noValidate autoComplete="off">
+        <form noValidate autoComplete="off">
           <TextField
             className={styles.textField}
             id="standard-basic"
@@ -46,7 +46,7 @@ export default function CodeInput() {
               style: { color: "#fff" },
             }}
           />
-        </div>
+          </form>
         <Button
           className={styles.enterButton}
           onClick={handleEnter}
