@@ -7,6 +7,9 @@ import {
   MenuItem,
   Menu,
 } from "@material-ui/core";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import IconButton from '@material-ui/core/IconButton';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 
 export default function HomePage() {
   const history = useHistory();
@@ -28,17 +31,17 @@ export default function HomePage() {
   return (
     <div className={styles.rootContainer}>
       <div class="subdiv_allinline">
-        <Button className={styles.backButton} onClick={handleBack}>
-          Back
-        </Button>
-        <Button
+        <IconButton className={styles.backButton} onClick={handleBack}>
+          <ArrowBackIosIcon />
+        </IconButton>
+        <IconButton
           className={styles.menuButton}
           onClick={handleOpenMenu}
           aria-controls="menu-list"
           aria-haspopup="true"
         >
-          Open Menu
-        </Button>
+          <DehazeIcon />
+        </IconButton>
         <Menu
           id="menu-list"
           anchorEl={anchorEl}

@@ -9,6 +9,13 @@
     display: flex;
     justify-content: center;
 }
+.backButton {
+    color: white;
+    background-color: #333333;
+    font-size: 30px;
+    padding: 20px 40px;
+    width: 10%;
+}
 .primaryButton {
     width: 30%;
     background-color: #333333;
