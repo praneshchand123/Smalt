@@ -31,7 +31,6 @@ export default function CodeInput() {
         <ArrowBackIosIcon />
       </IconButton>
       <div className={styles.textFieldContainer}>
-        <form noValidate autoComplete="off">
           <TextField
             className={styles.textField}
             id="standard-basic"
@@ -48,7 +47,6 @@ export default function CodeInput() {
               style: { color: "#fff" },
             }}
           />
-          </form>
         <Button
           className={styles.enterButton}
           onClick={handleEnter}
