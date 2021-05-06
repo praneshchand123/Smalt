@@ -1,0 +1,23 @@
+.image {
+  height: 64px;
+  width: 64px;
+  float: right;
+}
+.table {
+  width: 300;
+  background: #595959;
+}
+.tableRow {
+  background: #333333;
+}
+.tableCell {
+  border-bottom: none;
+  color: white;
+  text-align: left;
+}
+.tableCellHead {
+  border-bottom: none;
+  color: white;
+  font-size: 18px;
+  text-align: left;
+}
