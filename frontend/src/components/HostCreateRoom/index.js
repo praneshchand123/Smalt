@@ -3,8 +3,8 @@ import styles from "./style.module.css";
 import { useHistory } from "react-router-dom";
 import { Button, TextField, makeStyles } from "@material-ui/core";
 import axios from "axios";
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import IconButton from '@material-ui/core/IconButton';
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import IconButton from "@material-ui/core/IconButton";
 
 export default function HostCreateRoom() {
   const history = useHistory();
@@ -20,7 +20,10 @@ export default function HostCreateRoom() {
         authCode: code,
         userName: username,
       };
-      const response = axios.post("http://localhost:3001/users/auth/code", room);
+      const response = axios.post(
+        "http://localhost:3001/users/auth/code",
+        room
+      );
       setUsername("");
       history.push("/home");
     } else {
@@ -38,26 +41,28 @@ export default function HostCreateRoom() {
         <ArrowBackIosIcon />
       </IconButton>
       <div className={styles.textFieldContainer}>
-          <TextField
-            className={styles.textField}
-            id="standard-basic"
-            variant="outlined"
-            label="Username"
-            value={username}
-            error={emptyFieldFlag}
-            helperText={emptyFieldFlag && 'Please enter a username'}
-            onChange={e => {setUsername(e.target.value); setEmptyFieldFlag(false)}}
-            InputProps={{
-              style: { color: "#fff" },
-            }}
-            InputLabelProps={{
-              style: { color: "#fff" },
-            }}
-          />
-        <Button
-          className={styles.primaryButton}
-          onClick={createRoom}
-        >
+        <TextField
+          noValidate
+          autoComplete="off"
+          className={styles.textField}
+          id="standard-basic"
+          variant="outlined"
+          label="Username"
+          value={username}
+          error={emptyFieldFlag}
+          helperText={emptyFieldFlag && "Please enter a username"}
+          onChange={(e) => {
+            setUsername(e.target.value);
+            setEmptyFieldFlag(false);
+          }}
+          InputProps={{
+            style: { color: "#fff" },
+          }}
+          InputLabelProps={{
+            style: { color: "#fff" },
+          }}
+        />
+        <Button className={styles.primaryButton} onClick={createRoom}>
           Enter
         </Button>
       </div>
