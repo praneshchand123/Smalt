@@ -37,8 +37,11 @@ export default function SongSearch() {
   const handleSearch = async (searchTerm) => {
     if (searchTerm !== "") {
       console.log(searchTerm);
-      const response = await axios.get("http://localhost:3001/search/search", {
-        params: { searchTerm: searchTerm },
+      const response = await axios.get("http://localhost:3001/search/", {
+        params: { 
+                  room: "H86UoW",
+                  searchTerm: searchTerm,
+         },
       });
       console.log(response.data);
       setSuggestions(response.data);
@@ -52,7 +55,7 @@ export default function SongSearch() {
   const handleSuggestionSelect = async (index) => {
     console.log(index);
     const toAdd = {
-      room: "p87V4z",
+      room: "H86UoW",
       track: suggestions[index],
     }
     const response = await axios.post("http://localhost:3001/users/song", toAdd);

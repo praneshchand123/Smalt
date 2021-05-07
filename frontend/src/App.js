@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { LandingPage, JoinPlaylistPage, HomePage, HostPage } from './pages';
 
 function App() {
+  
   return (
     <BrowserRouter>
       <Switch>

@@ -1,5 +1,5 @@
 const { Server } = require("socket.io")
-
+const query = require("../db/queries")
 let io;
 
 exports.init = function (server) {
@@ -20,10 +20,12 @@ exports.init = function (server) {
     console.log(`${socket.id} connected`);
     socket.emit("WhichRoom", "idk")
 
-    socket.on('SpecifyRoom', (ans) => {
+    socket.on('SpecifyRoom', async (ans) => {
       console.log(`ans: ${ans.room}`);
       socket.join(ans.room);
-      socket.emit("heresASong", song);
+      const killme = await query.getAllSongs(ans.room);
+
+      socket.emit("heresASong", await query.getAllSongs(ans.room));
     })
 
     socket.on('addSong', (song) =>{
@@ -37,9 +39,8 @@ exports.init = function (server) {
   });
 }
 
-exports.broadcastNewSong = function(room,song){
-  setInterval(function(){ 
 
+exports.broadcastNewSong = function(room,song){
     io.in(room).emit("newSong",song);
-    console.log("hi")},1000) //logs hi every second
+    console.log(`hi mom: ${room}`)
 }

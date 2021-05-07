@@ -1,7 +1,13 @@
 .image {
-  height: 64px;
-  width: 64px;
+ 
+  height: 100px;
+  width: 100px;
   float: right;
+}
+.songName {
+  color:green;
+  font:bolder;
+  font-size: larger ;
 }
 .table {
   width: 300;

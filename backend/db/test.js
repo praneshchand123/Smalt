@@ -33,7 +33,8 @@ async function main() {
 
   await query.addSongToPool(testSong, roomCode);
   await query.addUserToRoom(testUser, roomCode);
-  await query.getCompleteRoom(roomCode);
+  //await query.getRoomById(roomCode);
+  console.log(`token: ${await query.getAccessToken(roomCode)}`);
 
   function makeCode(length) {
     var result = [];

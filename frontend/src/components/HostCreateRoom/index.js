@@ -11,7 +11,7 @@ export default function HostCreateRoom() {
 
   const [emptyFieldFlag, setEmptyFieldFlag] = React.useState(false);
 
-  const createRoom = () => {
+  const createRoom = async() => {
     var code = new URLSearchParams(window.location.search).get("code");
     if (code != null && username !== "") {
       const room = {
@@ -19,8 +19,8 @@ export default function HostCreateRoom() {
         userName: username,
       };
       const response = axios.post("http://localhost:3001/users/auth/code", room);
-      setUsername("");
-      history.push("/home");
+       console.log(response);
+      history.push(`/home?room=${response}`);
     } else {
       setEmptyFieldFlag(true);
     }

@@ -18,13 +18,18 @@ exports.createNewRoom = async function (token, hostName) {
 };
 
 exports.addSongToPool = async function (song, roomId) {
-  room = await getRoomById(roomId);
+  room = await this.getRoomById(roomId);
+  console.log(song);
   room.playlist.songs.push(song);
-  await room.save();
+
+  return await room.save(  (function(err, doc) {
+    if (err) return false;
+    return true;
+  }));
 };
 
 exports.addUserToRoom = async function (user, roomId) {
-  room = await getRoomById(roomId);
+  room = await this.getRoomById(roomId);
   room.users.push(user);
   room.save();
 };
@@ -53,7 +58,22 @@ function makeCode(length) {
   return result.join("");
 }
 
-async function getRoomById(roomId) {
+exports.getAllSongs= async function(room){
+  songs = await Room.findOne({ code: room }).select('playlist.songs -_id');
+  return songs.playlist;
+}
+
+exports.roomDoesExist = async function (roomCode){
+  truth = Room.exists({code: roomCode});
+  return truth;
+}
+
+exports.getAccessToken = async function (roomId){
+  const host = await Room.findOne({ code: roomId }).select('host.Tokens -_id')
+  return host;
+}
+
+exports.getRoomById = async function (roomId) {
   const room = await Room.findOne({ code: roomId });
   return room;
 }

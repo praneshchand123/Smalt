@@ -15,8 +15,6 @@ const roomSchema = new Schema({
     {
       userName: {
         type: String,
-        unique: true,
-        required: true,
       },
     },
   ],
@@ -59,7 +57,7 @@ const roomSchema = new Schema({
           type: String,
           required: true,
         },
-        artistNames: [
+        artists: [
           {
             type: String,
             required: true,
