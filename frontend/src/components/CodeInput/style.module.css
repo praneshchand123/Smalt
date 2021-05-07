@@ -9,6 +9,15 @@
     display: flex;
     justify-content: center;
 }
+.backButton {
+    color: white;
+    background-color: #333333;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 20px 20px;
+}
 .primaryButton {
     width: 30%;
     background-color: #333333;
@@ -21,7 +30,7 @@
 .enterButton {
     position: absolute;
     bottom: 0;
-    width: 30%;
+    width: 90%;
     background-color: #333333;
     border-radius: 30px;
     padding: 20px 40px;
@@ -31,7 +40,9 @@
 }
 .textField {
     background: #595959;
-    width: 300px;
+    width: 90%;
     font-size: 18;
+    height: 55px;
     color: white;
+    margin-bottom: 10;
 }
