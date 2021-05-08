@@ -9,6 +9,9 @@ import {
 } from "@material-ui/core";
 import { useCookies } from 'react-cookie';
 
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import IconButton from '@material-ui/core/IconButton';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 
 export default function HomePage() {
   const history = useHistory();
@@ -30,17 +33,17 @@ export default function HomePage() {
   return (
     <div className={styles.rootContainer}>
       <div class="subdiv_allinline">
-        <Button className={styles.backButton} onClick={handleBack}>
-          back
-        </Button>
-        <Button
+        <IconButton className={styles.backButton} onClick={handleBack}>
+          <ArrowBackIosIcon />
+        </IconButton>
+        <IconButton
           className={styles.menuButton}
           onClick={handleOpenMenu}
           aria-controls="menu-list"
           aria-haspopup="true"
         >
-          Open Menu
-        </Button>
+          <DehazeIcon />
+        </IconButton>
         <Menu
           id="menu-list"
           anchorEl={anchorEl}
@@ -54,12 +57,11 @@ export default function HomePage() {
         </Menu>
       </div>
       <div className={styles.bodyPartContainer}>
-        
-        <form className={styles.componentsContainer}>
+        <div>
           <h1>Room: {cookies.room.id}</h1>
           <SongSearch />
           <Playlist />
-        </form>
+        </div>
       </div>
     </div>
   );
