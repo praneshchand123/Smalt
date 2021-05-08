@@ -9,6 +9,16 @@ async function main() {
     name: "the wheels on the bus",
     imageURL: "irefuse",
     artistNames: "no",
+    upVoteCount: 0,
+    songDuration: 10,
+    id: makeCode(10),
+  };
+
+  var testSong2 = {
+    name: "lol",
+    imageURL: "nourl",
+    artistNames: "yes",
+    upVoteCount: 0,
     songDuration: 10,
     id: makeCode(10),
   };
@@ -41,10 +51,12 @@ async function main() {
   var a = await query.addSongToPool(testSong, roomCode);
   
 
+  await query.addSongToPool(testSong, roomCode);
+  await query.addSongToPool(testSong2, roomCode);
   //await query.addUserToRoom(testUser, roomCode);
+  await query.removeLikeFromSong(roomCode, testSong.id);
   //await query.getRoomById(roomCode);
-  xd = await query.getSong(roomCode,"kill me")
-  console.log(`uhhh ${xd}`);
+  //console.log(`token: ${await query.getAccessToken(roomCode)}`);
 
   function makeCode(length) {
     var result = [];
