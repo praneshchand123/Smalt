@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./style.module.css";
 import { useHistory } from "react-router-dom";
 import { Button, TextField, makeStyles } from "@material-ui/core";
+import { useCookies } from 'react-cookie';
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -9,12 +10,14 @@ export default function CodeInput() {
   const history = useHistory();
 
   const [emptyFieldFlag, setEmptyFieldFlag] = React.useState(false);
-
+  const [cookies, setCookie] = useCookies(['room']);
   const [textValue, setTextValue] = React.useState("");
 
   const handleEnter = () => {
     if (textValue !== "") {
-      setTextValue("");
+      var cookie ={id :textValue,
+        isHost :false}
+      setCookie('room', cookie, { path: '/' })
       history.push("/home");
     } else {
       setEmptyFieldFlag(true);

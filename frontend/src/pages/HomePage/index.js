@@ -7,13 +7,15 @@ import {
   MenuItem,
   Menu,
 } from "@material-ui/core";
+import { useCookies } from 'react-cookie';
+
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import IconButton from '@material-ui/core/IconButton';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 
 export default function HomePage() {
   const history = useHistory();
-
+  const [cookies, setCookie] = useCookies(['room']);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleOpenMenu = (event) => {
@@ -55,7 +57,8 @@ export default function HomePage() {
         </Menu>
       </div>
       <div className={styles.bodyPartContainer}>
-        <div className={styles.componentsContainer}>
+        <div>
+          <h1>Room: {cookies.room.id}</h1>
           <SongSearch />
           <Playlist />
         </div>

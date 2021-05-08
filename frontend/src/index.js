@@ -4,12 +4,14 @@ import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import { StylesProvider } from "@material-ui/core/styles";
-
+import { CookiesProvider } from 'react-cookie';
 ReactDOM.render(
   <React.StrictMode>
-    <StylesProvider injectFirst>
-      <App />
-    </StylesProvider>
+    <CookiesProvider>
+      <StylesProvider injectFirst>
+        <App />
+      </StylesProvider>
+    </CookiesProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.css";
+import Song from "../Song"
 import {
   Table,
   TableBody,
@@ -7,44 +8,54 @@ import {
   TableRow,
 } from "@material-ui/core";
 import socketIOClient from "socket.io-client";
+import { useCookies } from 'react-cookie';
+
+
 const ENDPOINT = "http://localhost:3001/";
 export default function Playlist() {
-
-  const [data, setResponse] = useState("");
+  const [cookies, setCookie] = useCookies(['name']);
+  const [songs, setSongs] = useState([]);
   useEffect(() => {
+   
+   
+  },[songs])
+  useEffect(() => {
+    
+    const addSong = (song) => setSongs(prevsonglist => [...prevsonglist, song]);
     const socket = socketIOClient(ENDPOINT);
-    socket.on("heresASong", data => {
-      setResponse(data);
+    socket.on("heresASong", (playlist) => {
+     
+     
+      setSongs(playlist.songs);
+     
+     
     });
     socket.on('WhichRoom', function () {
-      console.log("recieved request for room");
-      socket.emit('SpecifyRoom', { my: 'data' });
+     
+      //TODO COOKIES
+      socket.emit('SpecifyRoom', { room: cookies.room.id });
 
     });
-  }, [])
+
+    socket.on('newSong', (song) => {
+     
+     
+     
+       addSong(song);
+    })
+  },[])
+
 
 
   return (
     <>
       <Table className={styles.table}>
         <TableBody>
-          <>
-            <TableRow className={styles.tableRow}>
-              <TableCell className={styles.tableCellHead}>
-                {data.name}
-              </TableCell>
-              <TableCell className={styles.tableCell} rowSpan={2}>
-                <img
-                  src={data.src}
-                  className={styles.image}
-                />
-              </TableCell>
-            </TableRow>
-            <TableRow className={styles.tableRow}>
-
-              <TableCell className={styles.tableCell}>{data.artist}</TableCell>
-            </TableRow>
-          </>
+          {
+          songs.map(xd => {
+            return(<Song props = {xd}/>)
+          })
+          }
         </TableBody>
       </Table>
     </>

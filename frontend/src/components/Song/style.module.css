@@ -1,0 +1,29 @@
+.image {
+ 
+  height: 100px;
+  width: 100px;
+  float: right;
+}
+.songName {
+  color:green;
+  font:bolder;
+  font-size: larger ;
+}
+.table {
+  width: 300;
+  background: #595959;
+}
+.tableRow {
+  background: #333333;
+}
+.tableCell {
+  border-bottom: none;
+  color: white;
+  text-align: left;
+}
+.tableCellHead {
+  border-bottom: none;
+  color: white;
+  font-size: 18px;
+  text-align: left;
+}

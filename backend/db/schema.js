@@ -11,15 +11,13 @@ const roomSchema = new Schema({
   },
 
   //user subdocument
-  users: [
-    {
-      userName: {
-        type: String,
-        unique: true,
-        required: true,
-      },
-    },
-  ],
+  // users: [
+  //   {
+  //     userName: {
+  //       type: String,
+  //     },
+  //   },
+  // ],
 
   //host subdocument
   host: {
@@ -59,7 +57,7 @@ const roomSchema = new Schema({
           type: String,
           required: true,
         },
-        artistNames: [
+        artists: [
           {
             type: String,
             required: true,

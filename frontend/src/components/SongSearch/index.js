@@ -10,12 +10,13 @@ import {
 } from "@material-ui/core";
 import Popper from "@material-ui/core/Popper";
 import Paper from "@material-ui/core/Paper";
+import { useCookies } from 'react-cookie';
 
 export default function SongSearch() {
   const [suggestions, setSuggestions] = React.useState();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-
+  const [cookies, setCookie] = useCookies(['name']);
   const focusTextField = () => {
     document.getElementById("searchField").focus();
   };
@@ -37,8 +38,11 @@ export default function SongSearch() {
   const handleSearch = async (searchTerm) => {
     if (searchTerm !== "") {
       console.log(searchTerm);
-      const response = await axios.get("http://localhost:3001/search/search", {
-        params: { searchTerm: searchTerm },
+      const response = await axios.get("http://localhost:3001/search/", {
+        params: { 
+                  room: cookies.room.id,
+                  searchTerm: searchTerm,
+         },
       });
       console.log(response.data);
       setSuggestions(response.data);
@@ -52,7 +56,7 @@ export default function SongSearch() {
   const handleSuggestionSelect = async (index) => {
     console.log(index);
     const toAdd = {
-      room: "p87V4z",
+      room: cookies.room.id,
       track: suggestions[index],
     }
     const response = await axios.post("http://localhost:3001/users/song", toAdd);

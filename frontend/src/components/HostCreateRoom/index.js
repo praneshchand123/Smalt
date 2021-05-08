@@ -5,26 +5,31 @@ import { Button, TextField, makeStyles } from "@material-ui/core";
 import axios from "axios";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import IconButton from "@material-ui/core/IconButton";
-
+import { useCookies } from 'react-cookie';
 export default function HostCreateRoom() {
   const history = useHistory();
-
+  const [cookies, setCookie] = useCookies(['room']);
   const [username, setUsername] = React.useState("");
 
   const [emptyFieldFlag, setEmptyFieldFlag] = React.useState(false);
 
-  const createRoom = () => {
+  const createRoom = async() => {
     var code = new URLSearchParams(window.location.search).get("code");
     if (code != null && username !== "") {
       const room = {
         authCode: code,
         userName: username,
       };
-      const response = axios.post(
-        "http://localhost:3001/users/auth/code",
-        room
-      );
-      setUsername("");
+      console.log("rree");
+      const response = await axios.post("http://localhost:3001/users/auth/code", room);
+      console.log(response)
+      var cookie = {
+        id: response.data,
+        isHost: true
+      }
+      
+      setCookie('room', cookie, { path: '/' });
+      console.log("going")
       history.push("/home");
     } else {
       setEmptyFieldFlag(true);
