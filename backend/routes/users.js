@@ -53,5 +53,6 @@ router.put("/song/vote", async (req, res) => {
   }
   sockets.broadcastSongUpdated(room, track);
   res.status(200);
-  module.exports = router;
+  
 });
+module.exports = router;
