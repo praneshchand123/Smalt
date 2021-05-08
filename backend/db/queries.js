@@ -28,6 +28,14 @@ exports.addSongToPool = async function (song, roomId) {
   });
 };
 
+exports.refreshTokens = async function (newToken, roomId) {
+  room = await this.getRoomById(roomId);
+
+  room.host.Tokens.accessToken = newToken;
+  room.save();
+  console.log("tokens updated");
+};
+
 exports.addUserToRoom = async function (user, roomId) {
   room = await this.getRoomById(roomId);
   room.users.push(user);
@@ -71,6 +79,8 @@ exports.getAccessToken = async function (roomId) {
   const host = await Room.findOne({ code: roomId }).select("host.Tokens -_id");
   return host;
 };
+
+
 
 exports.getRoomById = async function (roomId) {
   const room = await Room.findOne({ code: roomId });

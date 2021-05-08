@@ -72,12 +72,13 @@ exports.fetchAccessToken = async function (code) {
 
 
 
-exports.refreshAccessToken = function () {
-    refresh_token = localStorage.getItem("refresh_token");
+exports.refreshAccessToken = async function (refreshToken) {
     let body = "grant_type=refresh_token";
-    body += "&refresh_token=" + refresh_token;
-    body += "&client_id=" + client_id;
-    callAuthorizationApi(body);
+    body += "&refresh_token=" + refreshToken;
+    body += "&client_id=" + clientId;
+    body += "&client_secret=" + clientSecret;
+    console.log(body);
+    return await callAuthorizationApi(body);
 }
 
 
@@ -85,7 +86,9 @@ async function callAuthorizationApi(body) {
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
     }
-    res = await axios.post(TOKEN, body, { headers: headers });
+    res = await axios.post(TOKEN, body, { headers: headers }).catch(err =>{
+        console.log(err.response.data);
+    });
     return res;
 
 }
