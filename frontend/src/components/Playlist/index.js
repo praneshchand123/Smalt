@@ -19,18 +19,22 @@ export default function Playlist() {
 
     const socket = socketIOClient(ENDPOINT);
 
-    socket.on("heresASong", (playlist) => {
+    socket.on("initPlaylist", (playlist) => {
       setSongs(playlist.songs);
     });
 
-    socket.on("WhichRoom", function () {
-      //TODO COOKIES
-      socket.emit("SpecifyRoom", { room: cookies.room.id });
+
+    socket.on('WhichRoom', function () {
+      socket.emit('SpecifyRoom', { room: cookies.room.id });
     });
 
-    socket.on("newSong", (song) => {
-      addSong(song);
-    });
+    socket.on('newSong', (song) => {
+       addSong(song);
+    })
+
+    return function cleanup() {
+      socket.disconnect();
+    };
 
     socket.on("songUpdated", (updatedSong) => {
 

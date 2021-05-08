@@ -24,9 +24,7 @@ exports.init = function (server) {
     socket.on("SpecifyRoom", async (ans) => {
       console.log(`ans: ${ans.room}`);
       socket.join(ans.room);
-      const killme = await query.getAllSongs(ans.room);
-
-      socket.emit("heresASong", await query.getAllSongs(ans.room));
+      socket.emit("initPlaylist", await query.getAllSongs(ans.room));
     });
 
     socket.on("addSong", (song) => {

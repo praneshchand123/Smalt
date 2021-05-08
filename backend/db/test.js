@@ -50,7 +50,6 @@ async function main() {
   var b = await query.addSongToPool(testSong2, roomCode);
   var a = await query.addSongToPool(testSong, roomCode);
   
-
   //await query.addUserToRoom(testUser, roomCode);
   //await query.getRoomById(roomCode);
   await query.getSong(roomCode,"kill me")
