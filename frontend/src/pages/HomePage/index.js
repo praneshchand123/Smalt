@@ -7,10 +7,12 @@ import {
   MenuItem,
   Menu,
 } from "@material-ui/core";
+import { useCookies } from 'react-cookie';
+
 
 export default function HomePage() {
   const history = useHistory();
-
+  const [cookies, setCookie] = useCookies(['room']);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleOpenMenu = (event) => {
@@ -29,7 +31,7 @@ export default function HomePage() {
     <div className={styles.rootContainer}>
       <div class="subdiv_allinline">
         <Button className={styles.backButton} onClick={handleBack}>
-          Back
+          back
         </Button>
         <Button
           className={styles.menuButton}
@@ -52,7 +54,9 @@ export default function HomePage() {
         </Menu>
       </div>
       <div className={styles.bodyPartContainer}>
+        
         <form className={styles.componentsContainer}>
+          <h1>Room: {cookies.room.id}</h1>
           <SongSearch />
           <Playlist />
         </form>

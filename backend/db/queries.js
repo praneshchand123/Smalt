@@ -42,7 +42,6 @@ exports.clearDB = async function () {
 async function addData(room) {
   const result = await room.save();
   console.log(`Added room to the database.`);
-  console.log(` host- ${result.host} (code: ${result.code})`);
 }
 
 function makeCode(length) {

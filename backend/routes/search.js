@@ -7,6 +7,7 @@ var router = express.Router();
 
 /* GET search Spotify API with search  term */
 router.get('/', async (req, res)  => {
+    console.log(req.query.room);
     const tokens = await query.getAccessToken(req.query.room);
     console.log(tokens);
     const headers = {
