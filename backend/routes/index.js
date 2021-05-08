@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.use('/users', users);
 router.use('/search', search);
-router.use('/join', search);
+router.use('/join', join);
 //router.use('/openSocket', openSocket);
 
 //router.use('/specialmagicalurl', auth)

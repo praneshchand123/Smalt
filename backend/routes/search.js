@@ -6,23 +6,29 @@ const query = require("../db/queries");
 var router = express.Router();
 
 /* GET search Spotify API with search  term */
-router.get('/', async (req, res)  => {
+router.get('/', async (req, res) => {
     console.log(req.query.room);
     const tokens = await query.getAccessToken(req.query.room);
-    console.log(tokens);
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization":"Bearer " + tokens.host.Tokens.accessToken
+        "Authorization": "Bearer " + tokens.host.Tokens.accessToken
     }
-    console.log(req.query.searchTerm);
-    var response = await axios.get(spotify.createSearchQuery(req.query.searchTerm), {
-            headers: headers
-        });
-
+    console.log("search started")
+    axios.get(spotify.createSearchQuery(req.query.searchTerm), {
+        headers: headers
+    }).then((response) => {
         var formattedResponse = formatter.formatSearchResponse(response.data.tracks.items);
         console.log("search done");
         res.json(formattedResponse);
+
+    }).catch(async (error) => {
+        console.log(error.response.data);
+        
+        newTokens = await spotify.refreshAccessToken(tokens.host.Tokens.refreshToken);
+        newToken = newTokens.data.access_token;
+        query.refreshTokens( newToken, req.query.room)
+    });
 });
 
 module.exports = router;

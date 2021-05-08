@@ -12,6 +12,13 @@ async function main() {
     songDuration: 10,
     id: makeCode(10),
   };
+  var testSong2 = {
+    name: "the wheels on the bus",
+    imageURL: "irefuse",
+    artistNames: "no",
+    songDuration: 10,
+    id: "kill me",
+  };
 
   var testUser = {
     userName: makeCode(5),
@@ -30,11 +37,14 @@ async function main() {
   }
   await query.clearDB();
   var roomCode = await query.createNewRoom(testToken, makeCode(4));
+  var b = await query.addSongToPool(testSong2, roomCode);
+  var a = await query.addSongToPool(testSong, roomCode);
+  
 
-  await query.addSongToPool(testSong, roomCode);
-  await query.addUserToRoom(testUser, roomCode);
+  //await query.addUserToRoom(testUser, roomCode);
   //await query.getRoomById(roomCode);
-  console.log(`token: ${await query.getAccessToken(roomCode)}`);
+  xd = await query.getSong(roomCode,"kill me")
+  console.log(`uhhh ${xd}`);
 
   function makeCode(length) {
     var result = [];
