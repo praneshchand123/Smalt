@@ -88,6 +88,7 @@ exports.getRoomById = async function (roomId) {
 };
 
 exports.addLikeToSong = async function (roomId, songId) {
+  console.log("add like called");
   Room.findOneAndUpdate(
     { code: roomId, "playlist.songs.id": songId },
     {
@@ -103,6 +104,7 @@ exports.addLikeToSong = async function (roomId, songId) {
 };
 
 exports.removeLikeFromSong = async function (roomId, songId) {
+  console.log("remove like called");
   Room.findOneAndUpdate(
     { code: roomId, "playlist.songs.id": songId },
     {

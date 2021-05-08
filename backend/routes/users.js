@@ -43,16 +43,21 @@ router.post("/song", async (req, res) => {
 });
 
 router.put("/song/vote", async (req, res) => {
-  const track = req.body.trackId;
-  const room = req.body.roomId;
+  const track = req.body.track;
+  const room = req.body.room;
+  const voteType = req.body.voteType;
+  console.log("VOTE TYPE");
+  console.log(voteType);
 
-  if (req.body.voteType === "upvote") {
-    await query.addLikeToSong(roomId, track);
-    console.log(`track ${req.body.trackId} updated in ${req.body.room}`);
+  if (voteType === "upvote") {
+    await query.addLikeToSong(room, track.id);
+    console.log(`track ${track.id} updated in ${room}`);
   } else {
+    await query.removeLikeFromSong(room, track.id);
+    console.log(`track ${track.id} updated in ${room}`);
   }
   sockets.broadcastSongUpdated(room, track);
   res.status(200);
-  
 });
+
 module.exports = router;
