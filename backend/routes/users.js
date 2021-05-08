@@ -10,32 +10,48 @@ router.get("/auth", async (req, res) => {
 });
 
 router.post("/auth/code", async (req, res) => {
-  console.log(`authrequest recieved: ${req.body.authCode}`)
-  var accessAndRefreshTokens = await spotify.fetchAccessToken(req.body.authCode);
+  console.log(`authrequest recieved: ${req.body.authCode}`);
+  var accessAndRefreshTokens = await spotify.fetchAccessToken(
+    req.body.authCode
+  );
   console.log("gotaccessTokens");
   var hostUserName = req.body.userName;
-  var roomId = await query.createNewRoom(accessAndRefreshTokens, hostUserName)
-  if(roomId){
+  var roomId = await query.createNewRoom(accessAndRefreshTokens, hostUserName);
+  if (roomId) {
     console.log(roomId);
     res.status(200).send(roomId);
   }
 });
 
-router.post("/song", async (req,res) => {
+router.post("/song", async (req, res) => {
   const tokens = await query.getAccessToken(req.body.room);
   const headers = {
-    "Accept": "application/json",
+    Accept: "application/json",
     "Content-Type": "application/json",
-    "Authorization":"Bearer " + tokens.host.Tokens.accessToken
-}
+    Authorization: "Bearer " + tokens.host.Tokens.accessToken,
+  };
   const track = req.body.track;
   track.upVoteCount = 0;
-  const response = await axios.get(spotify.createGetTrackQuery(track.id), { headers: headers });
+  const response = await axios.get(spotify.createGetTrackQuery(track.id), {
+    headers: headers,
+  });
   track.songDuration = response.data.duration_ms;
   await query.addSongToPool(track, req.body.room);
-    console.log(`added song to room ${req.body.room}`)
-    sockets.broadcastNewSong(req.body.room,track)
+  console.log(`added song to room ${req.body.room}`);
+  sockets.broadcastNewSong(req.body.room, track);
   res.status(200);
 });
 
-module.exports = router;
+router.put("/song/vote", async (req, res) => {
+  const track = req.body.trackId;
+  const room = req.body.roomId;
+
+  if (req.body.voteType === "upvote") {
+    await query.addLikeToSong(roomId, track);
+    console.log(`track ${req.body.trackId} updated in ${req.body.room}`);
+  } else {
+  }
+  sockets.broadcastSongUpdated(room, track);
+  res.status(200);
+  module.exports = router;
+});
