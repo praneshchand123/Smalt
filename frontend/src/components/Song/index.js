@@ -16,19 +16,19 @@ import {
 export default function Song(props) {
     console.log("I was called");
     const song = props.props;
-    const [likeButtonColor, setLikeButtonColor] = useState("disabled");
-    function handleLikeButton() {
-        if(likeButtonColor !== "disabled"){
-            setLikeButtonColor("secondary");
+    const [likeButtonColor, setLikeButtonColor] = useState('inherit');
+    const handleLikeButton = () => {
+        if(likeButtonColor !== 'inherit'){
+            setLikeButtonColor('inherit');
         }else{
-            setLikeButtonColor("disabled");
+            setLikeButtonColor('secondary');
         }
 
-    }
+    };
     return (
         <>
             <TableRow className={styles.tableRow}>
-            <TableCell className={styles.tableCell} rowSpan={2}>
+            <TableCell className={styles.tableCell}>
                     <Avatar
                         variant="rounded"
                         src={song.imageURL}
@@ -39,8 +39,10 @@ export default function Song(props) {
                     <div className ={styles.songName} >{song.name}</div>
                     <div className ={styles.songArtist}>{song.artists}</div>
                 </TableCell>
-                <TableCell className={styles.tableCell} rowSpan={2}>
-                    <IconButton onClick={handleLikeButton} color={likeButtonColor}><FavoriteIcon /></IconButton>
+                <TableCell className={styles.tableCell}>
+                    <IconButton onClick={handleLikeButton} color={likeButtonColor}>
+                        <FavoriteIcon />
+                    </IconButton>
                 </TableCell>
             </TableRow>
         </>
