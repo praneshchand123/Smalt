@@ -22,10 +22,10 @@ exports.addSongToPool = async function (song, roomId) {
   console.log(song);
   room.playlist.songs.push(song);
 
-  return await room.save(  (function(err, doc) {
+  return await room.save(function (err, doc) {
     if (err) return false;
     return true;
-  }));
+  });
 };
 
 exports.addUserToRoom = async function (user, roomId) {
@@ -57,22 +57,52 @@ function makeCode(length) {
   return result.join("");
 }
 
-exports.getAllSongs= async function(room){
-  songs = await Room.findOne({ code: room }).select('playlist.songs -_id');
+exports.getAllSongs = async function (room) {
+  songs = await Room.findOne({ code: room }).select("playlist.songs -_id");
   return songs.playlist;
-}
+};
 
-exports.roomDoesExist = async function (roomCode){
-  truth = Room.exists({code: roomCode});
+exports.roomDoesExist = async function (roomCode) {
+  truth = Room.exists({ code: roomCode });
   return truth;
-}
+};
 
-exports.getAccessToken = async function (roomId){
-  const host = await Room.findOne({ code: roomId }).select('host.Tokens -_id')
+exports.getAccessToken = async function (roomId) {
+  const host = await Room.findOne({ code: roomId }).select("host.Tokens -_id");
   return host;
-}
+};
 
 exports.getRoomById = async function (roomId) {
   const room = await Room.findOne({ code: roomId });
   return room;
-}
+};
+
+exports.addLikeToSong = async function (roomId, songId) {
+  Room.findOneAndUpdate(
+    { code: roomId, "playlist.songs.id": songId },
+    {
+      $inc: {
+        "playlist.songs.$.upVoteCount": 1,
+      },
+    },
+    function (err, doc) {
+      console.log(err);
+      console.log(doc);
+    }
+  );
+};
+
+exports.removeLikeFromSong = async function (roomId, songId) {
+  Room.findOneAndUpdate(
+    { code: roomId, "playlist.songs.id": songId },
+    {
+      $inc: {
+        "playlist.songs.$.upVoteCount": -1,
+      },
+    },
+    function (err, doc) {
+      console.log(err);
+      console.log(doc);
+    }
+  );
+};
