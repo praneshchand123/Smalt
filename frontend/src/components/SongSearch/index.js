@@ -87,7 +87,6 @@ export default function SongSearch() {
         anchorEl={document.getElementById("searchField")}
         role={undefined}
         transition
-        disablePortal
       >
         {({ TransitionProps, placement }) => (
           <Grow
@@ -111,13 +110,14 @@ export default function SongSearch() {
                         onClick={e => handleSuggestionSelect(e.target.id)}
                         className={styles.menuItem}
                       >
-                        <label id={index} style={{ float: "left" }}>{track.name}</label>
                         <img
                           id={index}
                           src={track.imageURL}
                           className={styles.image}
                           alt=""
+                          style={{ float: "right" }}
                         />
+                        <label id={index} style={{ float: "left" }}>{track.name}</label>
                       </MenuItem>
                     );
                   })}
