@@ -24,11 +24,11 @@ router.post("/auth/code", async (req, res) => {
 });
 
 router.post("/song", async (req, res) => {
-  const tokens = await query.getAccessToken(req.body.room);
+  const token = await query.getAccessToken(req.body.room);
   const headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization: "Bearer " + tokens.host.Tokens.accessToken,
+    Authorization: "Bearer " + token,
   };
   const track = req.body.track;
   track.upVoteCount = 0;
@@ -46,18 +46,34 @@ router.put("/song/vote", async (req, res) => {
   const track = req.body.track;
   const room = req.body.room;
   const voteType = req.body.voteType;
+  var updatedRoom;
+  var updatedSong;
   console.log("VOTE TYPE");
   console.log(voteType);
 
   if (voteType === "upvote") {
-    await query.addLikeToSong(room, track.id);
+    updatedRoom = await query.addLikeToSong(room, track.id);
     console.log(`track ${track.id} updated in ${room}`);
   } else {
     await query.removeLikeFromSong(room, track.id);
     console.log(`track ${track.id} updated in ${room}`);
   }
-  sockets.broadcastSongUpdated(room, track);
-  res.status(200);
+
+  var roomForSong = await query.getRoomById(room);
+  console.log(roomForSong);
+  var songs = roomForSong.playlist.songs;
+  console.log(songs);
+
+  songs.forEach(function (song, index) {
+    if (song.id === track.id) {
+      updatedSong = song;
+    }
+  });
+
+  console.log(updatedSong);
+
+  sockets.broadcastSongUpdated(room, updatedSong);
+  res.status(200).send();
 });
 
 module.exports = router;

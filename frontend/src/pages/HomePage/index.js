@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./style.module.css";
-import { SongSearch, Playlist } from "../../components";
+import { SongSearch, WebSocketProvider } from "../../components";
 import {
   Button,
   MenuItem,
   Menu,
 } from "@material-ui/core";
 import { useCookies } from 'react-cookie';
+import { PlaylistContext } from '../../playlist-context';
 
 /* These import statements, import various icons shown on the homepage from Material-UI */
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -22,9 +23,16 @@ export default function HomePage() {
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['room']);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [playlist, setPlaylist] = React.useState( [] );
+
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  useEffect(() => {
+    console.log("homepage rerender");
+  }, []);
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -60,9 +68,12 @@ export default function HomePage() {
       </div>
       <div className={styles.bodyPartContainer}>
         <div>
-          <h1>Room: {cookies.room.id}</h1>
+          <p className={styles.namelogo}><i>Smalt</i></p>
+          <h1 className={styles.name}>Room: {cookies.room.id}</h1>
+          <PlaylistContext.Provider value={[playlist, setPlaylist]}>
           <SongSearch />
-          <Playlist />
+          <WebSocketProvider />
+          </PlaylistContext.Provider>
         </div>
       </div>
     </div>

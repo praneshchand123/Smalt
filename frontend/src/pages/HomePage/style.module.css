@@ -14,7 +14,7 @@
   position: absolute;
   height: 200px;
   width: 90%;
-  top: 40%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -53,5 +53,14 @@
   height: 30px;
   border-radius: 50%;
   padding: 20px 20px;
+}
+
+.namelogo {
+  color: white;
+  font-size: 40px;
+}
+
+.name {
+  color: white;
 }
 

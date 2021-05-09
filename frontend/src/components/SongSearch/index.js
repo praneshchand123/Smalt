@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import styles from "./style.module.css";
 import {
@@ -11,11 +11,13 @@ import {
 import Popper from "@material-ui/core/Popper";
 import Paper from "@material-ui/core/Paper";
 import { useCookies } from 'react-cookie';
+import { PlaylistContext } from '../../playlist-context';
 
 export default function SongSearch() {
   const [suggestions, setSuggestions] = React.useState();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const [playlist, setPlaylist] = useContext(PlaylistContext);
   const [cookies, setCookie] = useCookies(['name']);
   const focusTextField = () => {
     document.getElementById("searchField").focus();
@@ -39,10 +41,10 @@ export default function SongSearch() {
     if (searchTerm !== "") {
       console.log(searchTerm);
       const response = await axios.get("http://localhost:3001/search/", {
-        params: { 
-                  room: cookies.room.id,
-                  searchTerm: searchTerm,
-         },
+        params: {
+          room: cookies.room.id,
+          searchTerm: searchTerm,
+        },
       });
       console.log(response.data);
       setSuggestions(response.data);
@@ -54,12 +56,22 @@ export default function SongSearch() {
   };
 
   const handleSuggestionSelect = async (index) => {
-    console.log(index);
-    const toAdd = {
-      room: cookies.room.id,
-      track: suggestions[index],
+    var duplicateSongFlag = false;
+    playlist.forEach(function (song, loopIndex) {
+      if (song.id === suggestions[index].id) {
+        duplicateSongFlag = true;
+      }
+    });
+
+    if (duplicateSongFlag) {
+      return
+    } else {
+      const toAdd = {
+        room: cookies.room.id,
+        track: suggestions[index],
+      }
+      const response = await axios.post("http://localhost:3001/users/song", toAdd);
     }
-    const response = await axios.post("http://localhost:3001/users/song", toAdd);
   }
 
   return (
@@ -87,7 +99,6 @@ export default function SongSearch() {
         anchorEl={document.getElementById("searchField")}
         role={undefined}
         transition
-        disablePortal
       >
         {({ TransitionProps, placement }) => (
           <Grow
@@ -111,13 +122,14 @@ export default function SongSearch() {
                         onClick={e => handleSuggestionSelect(e.target.id)}
                         className={styles.menuItem}
                       >
-                        <label id={index} style={{ float: "left" }}>{track.name}</label>
                         <img
                           id={index}
                           src={track.imageURL}
                           className={styles.image}
                           alt=""
+                          style={{ float: "right" }}
                         />
+                        <label id={index} style={{ float: "right" }}>{track.name}</label>
                       </MenuItem>
                     );
                   })}

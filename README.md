@@ -47,10 +47,10 @@ Smalt is essentially a Web Application utilising the Spotify API to create playl
 
 ### 07/04/21 - Zoom meeting
 * Assigned roles to team members
-- Pranesh - Database Schema and Queries set up
-- Joel - Host project on Heroku
-- Josh - Assist with frontend
-- JingWei - Design homepages for host and user
+* Pranesh - Database Schema and Queries set up
+* Joel - Host project on Heroku
+* Josh - Assist with frontend
+* JingWei - Design homepages for host and user
 
 ### 16/04/21 - Zoom meeting
 * Create issues on GitHub by Joel
@@ -74,8 +74,8 @@ Smalt is essentially a Web Application utilising the Spotify API to create playl
 
 ### 05/05/21 - In-person & Zoom meeting
 * Andrew's Canvas announcements today
-- Decided Heroku is not necessary for deployment 
-- Agreed on a mutual time to present the project in class
+* Decided Heroku is not necessary for deployment 
+* Agreed on a mutual time to present the project in class
 * Refactor of code
 * Songs not playing
 
@@ -87,7 +87,7 @@ Smalt is essentially a Web Application utilising the Spotify API to create playl
 
 ## Tasks Breakdown
 
-| Joel Shin                | Josh Burton                       | Jingwei Min                | Pranesh Chand                                      |
+| Joel Shin                | Josh Burton                       | Jingwei Min                | Pranesh Chand                                |
 | ------------------------ | --------------------------------- | -------------------------- | -------------------------------------------- |
 | Create issues on GitHub  | Spotify login and authentication  | Design pages for frontend  | Database Connection & Schema Setup           |
 | Content Cell             | Content Cell                      | Content Cell               | Intialisation of Db Queries                  |

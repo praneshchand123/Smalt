@@ -1,17 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./style.module.css";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import { useSessionStorage } from '../../useSessionStorage';
 import IconButton from "@material-ui/core/IconButton";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import { Avatar, TableCell, TableRow } from "@material-ui/core";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
+import {
+  Avatar,
+  TableCell,
+  TableRow,
+
+} from "@material-ui/core";
 
 export default function Song(props) {
+  console.log("I was called");
+  console.log(props);
   const song = props.props;
+  var formattedArtist = "";
+  song.artists.forEach(function (element) {
+    if (formattedArtist == "") {
+      formattedArtist = element
+    } else {
+      formattedArtist = formattedArtist + ", " + element
+    }
+  });
 
-  const [likeButtonColor, setLikeButtonColor] = useState("inherit");
-  const [liked, setLikedStatus] = useState(false);
+  const [likeButtonColor, setLikeButtonColor] = useState('inherit');
+  const [liked, setLikedStatus] = useSessionStorage(song.id, false);
+  //const [cachedLike, setCachedLike] = useLocalStorage(song.id, liked);
   const [cookies, setCookie] = useCookies(["name"]);
+
+  useEffect(() => {
+    setLikedStatus(liked);
+    if (liked) {
+      setLikeButtonColor("secondary");
+    } else {
+      setLikeButtonColor("inherit");
+    }
+  });
 
   const handleLikeButton = async () => {
     setLikedStatus(!liked);
@@ -22,9 +49,9 @@ export default function Song(props) {
       setLikeButtonColor("secondary");
     }
     if (liked) {
-        voteType = "unvote";
+      voteType = "unvote";
     } else {
-        voteType = "upvote";
+      voteType = "upvote";
     }
     const toUpdate = {
       room: cookies.room.id,
@@ -51,6 +78,7 @@ export default function Song(props) {
         <TableCell className={styles.tableCellHead}>
           <div className={styles.songName}>{song.name}</div>
           <div className={styles.songArtist}>{song.artists}</div>
+          <div className={styles.songArtist}>{song.upVoteCount}</div>
         </TableCell>
         <TableCell className={styles.tableCell}>
           <IconButton onClick={handleLikeButton} color={likeButtonColor}>

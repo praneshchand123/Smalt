@@ -1,19 +1,43 @@
-var Room = require("./schema.js");
+const Host = require("./hostSchema.js");
+var Room = require("./roomSchema.js");
 
-exports.createNewRoom = async function (token, hostName) {
+
+exports.createNewHost = async function(tokens, hostName){
+  console.log(hostName);
+var host =await new Host();
+
+host.host.userName = hostName;
+host.host.tokens = tokens;
+console.log(host);
+await addData(host);
+return host._id;
+}
+exports.getHostById = async function (hostname) {
+  console.log(hostname);
+  const host = await Host.findOne({ userName: hostname });
+  console.log(host);
+  return host._id;
+};
+
+
+exports.createNewRoom = async function (host_id) {
   codee = makeCode(6);
+  console.log(host_id);
   const room = new Room({
-    host: {
-      userName: hostName,
-      Tokens: token,
-    },
+
     code: codee,
     playlist: {
       songs: [],
     },
   });
-
+  room.host = host_id;
   await addData(room);
+  const host = await Host.findOne({_id : host_id});
+  console.log(host);
+  ans = await host.host.rooms.push(room._id);
+  console.log(ans);
+  host.save();
+
   return codee;
 };
 
@@ -29,11 +53,10 @@ exports.addSongToPool = async function (song, roomId) {
 };
 
 exports.refreshTokens = async function (newToken, roomId) {
-  room = await this.getRoomById(roomId);
-
-  room.host.Tokens.accessToken = newToken;
-  room.save();
-  console.log("tokens updated");
+  const room = await Room.findOne({ code: roomId });
+  const host = await Host.findOne({_id: room.host._id})
+  host.host.tokens.accessToken = newToken;
+  host.save();
 };
 
 exports.addUserToRoom = async function (user, roomId) {
@@ -44,7 +67,8 @@ exports.addUserToRoom = async function (user, roomId) {
 
 exports.clearDB = async function () {
   const roomsGone = await Room.deleteMany({});
-  console.log(`Cleared database (removed ${roomsGone.deletedCount} rooms).`);
+  const hostsGone = await Host.deleteMany({});
+  console.log(`Cleared database (removed ${roomsGone.deletedCount} rooms, ${hostsGone.deletedCount} hosts).`);
 };
 
 async function addData(room) {
@@ -71,13 +95,20 @@ exports.getAllSongs = async function (room) {
 };
 
 exports.roomDoesExist = async function (roomCode) {
+  console.log(roomCode);
   truth = Room.exists({ code: roomCode });
   return truth;
 };
 
 exports.getAccessToken = async function (roomId) {
-  const host = await Room.findOne({ code: roomId }).select("host.Tokens -_id");
-  return host;
+  console.log(`room id: ${roomId}`)
+  const room = await Room.findOne({ code: roomId }).populate("host");
+  return room.host.host.tokens.accessToken;
+};
+exports.getRefreshToken = async function (roomId) {
+  console.log(`room id: ${roomId}`)
+  const room = await Room.findOne({ code: roomId }).populate("host");
+  return room.host.host.tokens.refreshToken;
 };
 
 
@@ -87,34 +118,46 @@ exports.getRoomById = async function (roomId) {
   return room;
 };
 
+// exports.findSongById = async function (roomId, songId) {
+//   var song = await Room.findOne(
+//     { code: roomId, "playlist.songs.id": songId }
+//   ).select("playlist.songs -_id");
+//   console.log("selectedSong");
+//   console.log(song.playlist);
+
+//   return song.playlist.songs;
+// }
+
 exports.addLikeToSong = async function (roomId, songId) {
   console.log("add like called");
-  Room.findOneAndUpdate(
+  var updatedRoom = await Room.findOneAndUpdate(
     { code: roomId, "playlist.songs.id": songId },
     {
       $inc: {
         "playlist.songs.$.upVoteCount": 1,
       },
     },
-    function (err, doc) {
-      console.log(err);
-      console.log(doc);
+    {
+      returnOriginal: false,
     }
   );
+
+  return updatedRoom;
 };
 
 exports.removeLikeFromSong = async function (roomId, songId) {
   console.log("remove like called");
-  Room.findOneAndUpdate(
+  var updatedRoom = await Room.findOneAndUpdate(
     { code: roomId, "playlist.songs.id": songId },
     {
       $inc: {
         "playlist.songs.$.upVoteCount": -1,
       },
     },
-    function (err, doc) {
-      console.log(err);
-      console.log(doc);
+    {
+      returnOriginal: false,
     }
   );
+
+  return updatedRoom;
 };

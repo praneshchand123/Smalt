@@ -1,51 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import styles from "./style.module.css";
 import Song from "../Song";
-import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
-import socketIOClient from "socket.io-client";
-import { useCookies } from "react-cookie";
+import { Table, TableBody } from "@material-ui/core";
+import { PlaylistContext } from "../../playlist-context";
 
 const ENDPOINT = "http://localhost:3001/";
 
 export default function Playlist() {
-  const [cookies, setCookie] = useCookies(["name"]);
-  const [songs, setSongs] = useState([]);
-
-  useEffect(() => {}, [songs]);
-
-  useEffect(() => {
-    const addSong = (song) =>
-      setSongs((prevsonglist) => [...prevsonglist, song]);
-
-    const socket = socketIOClient(ENDPOINT);
-
-    socket.on("initPlaylist", (playlist) => {
-      setSongs(playlist.songs);
-    });
-
-
-    socket.on('WhichRoom', function () {
-      socket.emit('SpecifyRoom', { room: cookies.room.id });
-    });
-
-    socket.on('newSong', (song) => {
-       addSong(song);
-    })
-
-    return function cleanup() {
-      socket.disconnect();
-    };
-
-    socket.on("songUpdated", (updatedSong) => {
-
-    });
-  }, []);
+  const [playlist, setPlaylist] = useContext(PlaylistContext);
 
   return (
     <>
       <Table className={styles.table}>
         <TableBody>
-          {songs.map((xd) => {
+          {playlist.map((xd) => {
             return <Song props={xd} />;
           })}
         </TableBody>

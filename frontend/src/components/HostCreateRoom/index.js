@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./style.module.css";
 import { useHistory } from "react-router-dom";
 import { Button, TextField, makeStyles } from "@material-ui/core";
@@ -9,23 +9,44 @@ import { useCookies } from 'react-cookie';
 export default function HostCreateRoom() {
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['room']);
-  const [username, setUsername] = React.useState("");
+  const [roomName, setRoomName] = React.useState("");
 
   const [emptyFieldFlag, setEmptyFieldFlag] = React.useState(false);
-
-  const createRoom = async() => {
+  useEffect( async() => {
     var code = new URLSearchParams(window.location.search).get("code");
-    if (code != null && username !== "") {
-      const room = {
+
+    var spotifyLogin =cookies.host;
+    console.log(`spotify login: ${spotifyLogin}`)
+    if(code ==null&& spotifyLogin == null){
+      history.push("/");
+      return;
+    }
+    if(spotifyLogin== null){
+      console.log(`spotify login: ${spotifyLogin}`)
+      const login = {
         authCode: code,
-        userName: username,
       };
-      console.log("rree");
-      const response = await axios.post("http://localhost:3001/users/auth/code", room);
+      const response = await axios.post("http://localhost:3001/host/login", login);
       console.log(response)
       var cookie = {
-        id: response.data,
-        isHost: true
+        username: response.data
+      }
+      setCookie('host', cookie, { path: '/' });
+    }
+    
+  },[]);
+
+  const createRoom = async() => {
+    
+    if (roomName !== "") {
+      const room = {
+        name: roomName,
+        userName: cookies.host.username,
+      };
+      const response = await axios.post("http://localhost:3001/host/new", room);
+      console.log(response)
+      var cookie = {
+        id: response.data
       }
       
       setCookie('room', cookie, { path: '/' });
@@ -53,11 +74,11 @@ export default function HostCreateRoom() {
           id="standard-basic"
           variant="outlined"
           label="Username"
-          value={username}
+          value={roomName}
           error={emptyFieldFlag}
-          helperText={emptyFieldFlag && "Please enter a username"}
+          helperText={emptyFieldFlag && "Please enter a room name"}
           onChange={(e) => {
-            setUsername(e.target.value);
+            setRoomName(e.target.value);
             setEmptyFieldFlag(false);
           }}
           InputProps={{

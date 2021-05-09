@@ -21,21 +21,7 @@ const roomSchema = new Schema({
 
   //host subdocument
   host: {
-    userName: {
-      type: String,
-      required: true,
-    },
-
-    Tokens: {
-      accessToken: {
-        type: String,
-        required: true,
-      },
-      refreshToken: {
-        type: String,
-        required: true,
-      },
-    },
+     type: Schema.Types.ObjectId, ref: 'Host' 
   },
 
   //playlist subdocument
@@ -47,6 +33,9 @@ const roomSchema = new Schema({
     songs: [
       {
         upVoteCount: {
+          type: Number,
+        },
+        queueNumber: {
           type: Number,
         },
         name: {
@@ -80,3 +69,4 @@ const roomSchema = new Schema({
 });
 
 module.exports = mongoose.model("Room", roomSchema);
+
