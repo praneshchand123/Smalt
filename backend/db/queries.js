@@ -12,12 +12,14 @@ console.log(host);
 await addData(host);
 return host._id;
 }
+exports.getHostById = async function (hostname) {
+  console.log(hostname);
+  const host = await Host.findOne({ userName: hostname });
+  console.log(host);
+  return host._id;
+};
 
-exports.addRoomtoHost = async function(hostName,room_id){
-  const host = await Host.findOne({userName : hostName});
-  host.room.push(room_id);
 
-}
 exports.createNewRoom = async function (host_id) {
   codee = makeCode(6);
   console.log(host_id);
@@ -53,12 +55,8 @@ exports.addSongToPool = async function (song, roomId) {
 exports.refreshTokens = async function (newToken, roomId) {
   const room = await Room.findOne({ code: roomId });
   const host = await Host.findOne({_id: room.host._id})
-  console.log(room);
-  console.log(newToken);
   host.host.tokens.accessToken = newToken;
   host.save();
-  console.log("tokens updated");
-  console.log(await this.getAccessToken(roomId));
 };
 
 exports.addUserToRoom = async function (user, roomId) {
