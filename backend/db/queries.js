@@ -104,6 +104,11 @@ exports.getAccessToken = async function (roomId) {
   const room = await Room.findOne({ code: roomId }).populate("host");
   return room.host.host.tokens.accessToken;
 };
+exports.getRefreshToken = async function (roomId) {
+  console.log(`room id: ${roomId}`)
+  const room = await Room.findOne({ code: roomId }).populate("host");
+  return room.host.host.tokens.refreshToken;
+};
 
 
 

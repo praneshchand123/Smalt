@@ -14,6 +14,7 @@ import {
 
 export default function Song(props) {
     console.log("I was called");
+    console.log(props);
     const song = props.props;
     var formattedArtist = "";
     song.artists.forEach(function(element) { 

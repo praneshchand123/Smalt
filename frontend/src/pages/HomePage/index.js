@@ -23,7 +23,7 @@ export default function HomePage() {
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['room']);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [playlist, setPlaylist] = React.useState( [{name: "lol" }] );
+  const [playlist, setPlaylist] = React.useState( [] );
 
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
