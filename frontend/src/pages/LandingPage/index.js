@@ -2,10 +2,9 @@ import React from 'react';
 import styles from "./style.module.css";
 import { LandingOptions } from "../../components";
 
-/* This HostPage function applies the CSS styles to the LandingOptions */
+/* This LandingPage function applies the CSS styles to the HostCreateRoom */
 
 export default function LandingPage() {
-    
   
     return (
         
