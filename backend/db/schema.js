@@ -49,6 +49,9 @@ const roomSchema = new Schema({
         upVoteCount: {
           type: Number,
         },
+        queueNumber: {
+          type: Number,
+        },
         name: {
           type: String,
           required: true,

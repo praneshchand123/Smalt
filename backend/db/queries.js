@@ -87,34 +87,46 @@ exports.getRoomById = async function (roomId) {
   return room;
 };
 
+// exports.findSongById = async function (roomId, songId) {
+//   var song = await Room.findOne(
+//     { code: roomId, "playlist.songs.id": songId }
+//   ).select("playlist.songs -_id");
+//   console.log("selectedSong");
+//   console.log(song.playlist);
+
+//   return song.playlist.songs;
+// }
+
 exports.addLikeToSong = async function (roomId, songId) {
   console.log("add like called");
-  Room.findOneAndUpdate(
+  var updatedRoom = await Room.findOneAndUpdate(
     { code: roomId, "playlist.songs.id": songId },
     {
       $inc: {
         "playlist.songs.$.upVoteCount": 1,
       },
     },
-    function (err, doc) {
-      console.log(err);
-      console.log(doc);
+    {
+      returnOriginal: false,
     }
   );
+
+  return updatedRoom;
 };
 
 exports.removeLikeFromSong = async function (roomId, songId) {
   console.log("remove like called");
-  Room.findOneAndUpdate(
+  var updatedRoom = await Room.findOneAndUpdate(
     { code: roomId, "playlist.songs.id": songId },
     {
       $inc: {
         "playlist.songs.$.upVoteCount": -1,
       },
     },
-    function (err, doc) {
-      console.log(err);
-      console.log(doc);
+    {
+      returnOriginal: false,
     }
   );
+
+  return updatedRoom;
 };
