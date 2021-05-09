@@ -14,6 +14,7 @@ import {
 
 export default function Song(props) {
     console.log("I was called");
+    console.log(props);
     const song = props.props;
     var formattedArtist = "";
     song.artists.forEach(function(element) { 
@@ -25,6 +26,8 @@ export default function Song(props) {
         });
         
     const [likeButtonColor, setLikeButtonColor] = useState('inherit');
+    const [liked, setLikedStatus] = useState(false);
+    const [cookies, setCookie] = useCookies(["name"]);
 
 
 
@@ -66,6 +69,7 @@ export default function Song(props) {
         <TableCell className={styles.tableCellHead}>
           <div className={styles.songName}>{song.name}</div>
           <div className={styles.songArtist}>{song.artists}</div>
+          <div className={styles.songArtist}>{song.upVoteCount}</div>
         </TableCell>
         <TableCell className={styles.tableCell}>
           <IconButton onClick={handleLikeButton} color={likeButtonColor}>

@@ -39,10 +39,10 @@ export default function SongSearch() {
     if (searchTerm !== "") {
       console.log(searchTerm);
       const response = await axios.get("http://localhost:3001/search/", {
-        params: { 
-                  room: cookies.room.id,
-                  searchTerm: searchTerm,
-         },
+        params: {
+          room: cookies.room.id,
+          searchTerm: searchTerm,
+        },
       });
       console.log(response.data);
       setSuggestions(response.data);

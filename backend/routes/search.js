@@ -26,7 +26,8 @@ router.get('/', async (req, res) => {
     }).catch(async (error) => {
         console.log(error.response.data);
         
-        newTokens = await spotify.refreshAccessToken(tokens.host.Tokens.refreshToken);
+        const refreshToken = await query.getRefreshToken(req.query.room);
+        newTokens = await spotify.refreshAccessToken(refreshToken);
         newToken = newTokens.data.access_token;
         query.refreshTokens( newToken, req.query.room)
     });
