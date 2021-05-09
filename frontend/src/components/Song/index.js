@@ -11,16 +11,26 @@ import {
     Avatar,
     TableCell,
     TableRow,
-  } from "@material-ui/core";
+
+} from "@material-ui/core";
 
 export default function Song(props) {
     console.log("I was called");
     const song = props.props;
+    var formattedArtist = "";
+    song.artists.forEach(function(element) { 
+        if (formattedArtist == ""){
+            formattedArtist = element
+        }else{
+        formattedArtist = formattedArtist + ", " + element
+        }
+        });
+        
     const [likeButtonColor, setLikeButtonColor] = useState('inherit');
     const handleLikeButton = () => {
-        if(likeButtonColor !== 'inherit'){
+        if (likeButtonColor !== 'inherit') {
             setLikeButtonColor('inherit');
-        }else{
+        } else {
             setLikeButtonColor('secondary');
         }
 
@@ -28,7 +38,7 @@ export default function Song(props) {
     return (
         <>
             <TableRow className={styles.tableRow}>
-            <TableCell className={styles.tableCell}>
+                <TableCell className={styles.tableCell}>
                     <Avatar
                         variant="rounded"
                         src={song.imageURL}
@@ -36,8 +46,8 @@ export default function Song(props) {
                     />
                 </TableCell>
                 <TableCell className={styles.tableCellHead}>
-                    <div className ={styles.songName} >{song.name}</div>
-                    <div className ={styles.songArtist}>{song.artists}</div>
+                    <div className={styles.songName} >{song.name}</div>
+                    <div className={styles.songArtist}>{formattedArtist}</div>
                 </TableCell>
                 <TableCell className={styles.tableCell}>
                     <IconButton onClick={handleLikeButton} color={likeButtonColor}>
