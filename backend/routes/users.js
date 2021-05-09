@@ -24,11 +24,11 @@ router.post("/auth/code", async (req, res) => {
 });
 
 router.post("/song", async (req, res) => {
-  const tokens = await query.getAccessToken(req.body.room);
+  const token = await query.getAccessToken(req.body.room);
   const headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization: "Bearer " + tokens.host.Tokens.accessToken,
+    Authorization: "Bearer " + token,
   };
   const track = req.body.track;
   track.upVoteCount = 0;

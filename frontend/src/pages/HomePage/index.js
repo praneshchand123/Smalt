@@ -10,11 +10,16 @@ import {
 import { useCookies } from 'react-cookie';
 import { PlaylistContext } from '../../playlist-context';
 
+/* These import statements, import various icons shown on the homepage from Material-UI */
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import IconButton from '@material-ui/core/IconButton';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 
+/* This HomePage() function harnesses Material-UI and React to create the homepage. It obtains the history object from the history hook in which uses the created room to 
+obtain and retrieve the cookies. The pop over menu button has the onClick prop set to handleOpenMenu function where it sets the anchor element to open the pop over menu.*/
+
 export default function HomePage() {
+
   const history = useHistory();
   const [cookies, setCookie] = useCookies(['room']);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -31,7 +36,6 @@ export default function HomePage() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   const handleBack = () => {
     history.goBack();
   };

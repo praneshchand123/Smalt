@@ -3,15 +3,32 @@ import styles from "./style.module.css";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import IconButton from "@material-ui/core/IconButton";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import { Avatar, TableCell, TableRow } from "@material-ui/core";
+import FavoriteIcon from '@material-ui/icons/Favorite'
+
+import {
+    Avatar,
+    TableCell,
+    TableRow,
+
+} from "@material-ui/core";
 
 export default function Song(props) {
-  const song = props.props;
+    console.log("I was called");
+    const song = props.props;
+    var formattedArtist = "";
+    song.artists.forEach(function(element) { 
+        if (formattedArtist == ""){
+            formattedArtist = element
+        }else{
+        formattedArtist = formattedArtist + ", " + element
+        }
+        });
+        
+    const [likeButtonColor, setLikeButtonColor] = useState('inherit');
+    const [liked, setLikedStatus] = useState(false);
+    const [cookies, setCookie] = useCookies(["name"]);
 
-  const [likeButtonColor, setLikeButtonColor] = useState("inherit");
-  const [liked, setLikedStatus] = useState(false);
-  const [cookies, setCookie] = useCookies(["name"]);
+
 
   const handleLikeButton = async () => {
     setLikedStatus(!liked);
