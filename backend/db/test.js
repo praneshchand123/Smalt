@@ -48,6 +48,8 @@ async function main() {
   await query.clearDB();
   const host_id = await query.createNewHost(testToken,"jimmy")
   const roomCode = await query.createNewRoom(host_id);
+  console.log(await query.refreshTokens("idk",roomCode))
+  console.log(await query.getAccessToken(roomCode));
 
   // var roomCode = await query.createNewRoom(, makeCode(4));
   // var b = await query.addSongToPool(testSong2, roomCode);
