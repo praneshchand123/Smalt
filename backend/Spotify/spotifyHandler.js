@@ -12,6 +12,7 @@ var refresh_token = null;
 //spotify api endpoints
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
 const TOKEN = "https://accounts.spotify.com/api/token";
+const USERNAME = "https://api.spotify.com/v1/me"
 const PLAYLISTS = "https://api.spotify.com/v1/me/playlists";
 const DEVICES = "https://api.spotify.com/v1/me/player/devices";
 const PLAY = "https://api.spotify.com/v1/me/player/play";
@@ -25,7 +26,20 @@ const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing
 const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
 const SEARCH = "https://api.spotify.com/v1/search";
 
-
+exports.getUsername = async function (token){
+    
+    let headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+    }
+    res = await axios.get(USERNAME, { headers: headers }).catch(err =>{
+        console.log("ahh");
+        console.log(err.response.data);
+    });
+    console.log(res)
+    return res.data.display_name
+}
 //this function creates string which redirects user to spotify with login prompt and returns it. User is redirected by frontend.
 //redirectUri Must be approved in spotify
 exports.createAuthRequest = function (redirectUri) {
@@ -62,7 +76,7 @@ exports.fetchAccessToken = async function (code) {
     body += "&client_id=" + clientId;
     body += "&client_secret=" + clientSecret;
     
-    var responseToken = await callAuthorizationApi(body);
+    var responseToken = await callApiPost(body);
         output = {
             accessToken:responseToken.data.access_token,
             refreshToken:responseToken.data.refresh_token,
@@ -78,11 +92,11 @@ exports.refreshAccessToken = async function (refreshToken) {
     body += "&client_id=" + clientId;
     body += "&client_secret=" + clientSecret;
     console.log(body);
-    return await callAuthorizationApi(body);
+    return await callApiPost(body);
 }
 
 
-async function callAuthorizationApi(body) {
+async function callApiPost(body) {
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
     }
@@ -92,6 +106,8 @@ async function callAuthorizationApi(body) {
     return res;
 
 }
+
+
 
 
 

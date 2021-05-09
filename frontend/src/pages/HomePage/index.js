@@ -61,7 +61,10 @@ export default function HomePage() {
       <div className={styles.bodyPartContainer}>
         <div>
           <h1>Room: {cookies.room.id}</h1>
+          <h1>Now Playing:</h1>
+          
           <SongSearch />
+          <h1>Upcoming songs</h1>
           <Playlist />
         </div>
       </div>

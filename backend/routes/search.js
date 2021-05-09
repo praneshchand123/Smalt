@@ -8,11 +8,12 @@ var router = express.Router();
 /* GET search Spotify API with search  term */
 router.get('/', async (req, res) => {
     console.log(req.query.room);
-    const tokens = await query.getAccessToken(req.query.room);
+    const token = await query.getAccessToken(req.query.room);
+    console.log(token);
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + tokens.host.Tokens.accessToken
+        "Authorization": "Bearer " + token
     }
     console.log("search started")
     axios.get(spotify.createSearchQuery(req.query.searchTerm), {
