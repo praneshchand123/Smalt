@@ -7,3 +7,7 @@
     overflow: auto;
     background: #333333;
   }
+.name{
+  color: white;
+  font-size: 50px;
+}

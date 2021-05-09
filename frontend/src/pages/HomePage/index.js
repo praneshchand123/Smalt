@@ -68,7 +68,8 @@ export default function HomePage() {
       </div>
       <div className={styles.bodyPartContainer}>
         <div>
-          <h1>Room: {cookies.room.id}</h1>
+          <p className={styles.namelogo}><i>Smalt</i></p>
+          <h1 className={styles.name}>Room: {cookies.room.id}</h1>
           <PlaylistContext.Provider value={[playlist, setPlaylist]}>
           <SongSearch />
           <WebSocketProvider />
