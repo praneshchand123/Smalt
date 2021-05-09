@@ -1,19 +1,41 @@
-var Room = require("./schema.js");
+const Host = require("./hostSchema.js");
+var Room = require("./roomSchema.js");
 
-exports.createNewRoom = async function (token, hostName) {
+
+exports.createNewHost = async function(tokens, hostName){
+  console.log(hostName);
+var host =await new Host();
+
+host.host.userName = hostName;
+host.host.tokens = tokens;
+console.log(host);
+await addData(host);
+return host._id;
+}
+
+exports.addRoomtoHost = async function(hostName,room_id){
+  const host = await Host.findOne({userName : hostName});
+  host.room.push(room_id);
+
+}
+exports.createNewRoom = async function (host_id) {
   codee = makeCode(6);
+  console.log(host_id);
   const room = new Room({
-    host: {
-      userName: hostName,
-      Tokens: token,
-    },
+
     code: codee,
     playlist: {
       songs: [],
     },
   });
-
+  room.host = host_id;
   await addData(room);
+  const host = await Host.findOne({_id : host_id});
+  console.log(host);
+  ans = await host.host.rooms.push(room._id);
+  console.log(ans);
+  host.save();
+
   return codee;
 };
 
@@ -44,7 +66,8 @@ exports.addUserToRoom = async function (user, roomId) {
 
 exports.clearDB = async function () {
   const roomsGone = await Room.deleteMany({});
-  console.log(`Cleared database (removed ${roomsGone.deletedCount} rooms).`);
+  const hostsGone = await Host.deleteMany({});
+  console.log(`Cleared database (removed ${roomsGone.deletedCount} rooms, ${hostsGone.deletedCount} hosts).`);
 };
 
 async function addData(room) {
