@@ -95,6 +95,7 @@ exports.getAllSongs = async function (room) {
 };
 
 exports.roomDoesExist = async function (roomCode) {
+  console.log(roomCode);
   truth = Room.exists({ code: roomCode });
   return truth;
 };
