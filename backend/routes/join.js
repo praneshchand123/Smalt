@@ -9,7 +9,7 @@ var router = express.Router();
 
 router.get('/', async (req, res)  => {
     console.log(`got code: ${req.query.roomCode}`);
-    truth = await queries.roomDoesExist(req.query.roomCode)
+    truth = await queries.roomDoesExist(req.query.roomCode);
     if(truth ){
         res.status(200).send({"result": true})
     }else{
