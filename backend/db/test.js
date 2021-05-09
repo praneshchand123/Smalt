@@ -56,10 +56,12 @@ async function main() {
   // var a = await query.addSongToPool(testSong, roomCode);
   
 
+
   // await query.addSongToPool(testSong, roomCode);
   // await query.addSongToPool(testSong2, roomCode);
   // //await query.addUserToRoom(testUser, roomCode);
   // await query.removeLikeFromSong(roomCode, testSong.id);
+
   //await query.getRoomById(roomCode);
   //console.log(`token: ${await query.getAccessToken(roomCode)}`);
 
